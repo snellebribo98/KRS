@@ -8,7 +8,19 @@ I want to make an application that shows the all of that data in a clear overvie
 ## Solution
 My idea in a single sentence is: "Create an app that creates a simple overview of customer data.".
 The app starts with a login screen where the user, who can be an user or an administrator, logins to the app. 
-//Picture of login screen
+![Login](Pictures/login.png)
+
+The first page for an administrator is the search customer page
+![Zoek klant](Pictures/zoekklant.png)
+
+If a customer is tapped
+![Klant info](Pictures/klantinfo.png)
+
+Search device is the same as search customer only with different search bars
+
+The agenda tab will have a calender overview of the appointments with customers
+![Calender](Pictures/calenderoverview.png)
+
 For the API part, all the data will be in an SQL database which can be requested and edited from within the app using PHP.
 
 
