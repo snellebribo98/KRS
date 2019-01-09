@@ -19,7 +19,6 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     var needed_data = [onderhoud3]()
     
     
-    
     @IBOutlet weak var onderhoudTableView: DesignableTableView!
     @IBOutlet weak var onderhoudsdatum: UIDatePicker!
     @IBOutlet weak var monteur: UIPickerView!
@@ -111,26 +110,31 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         werkzaamheden.isEditable = false
         Opmerkingen.isSelectable = false
         Opmerkingen.isEditable = false
-        let endIndex = needed_data.count - 1
-        if needed_data[endIndex].opmerkingen == "Nieuw Onderhoud" {
-            needed_data.remove(at: endIndex)
+        print(needed_data.count)
+        if needed_data.count != 0 {
+            let endIndex = needed_data.count - 1
+            if needed_data[endIndex].opmerkingen == "Nieuw Onderhoud" {
+                needed_data.remove(at: endIndex)
+            }
         }
         onderhoudTableView.reloadData()
         onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
-        let onderhoudsdatum2 = needed_data[0].onderhoudsdatum
-        datumLabel?.text = dateFormat.string(from: onderhoudsdatum2)
-        onderhoudsdatum?.date = needed_data[0].onderhoudsdatum
-        let monteur2 = needed_data[0].monteur
-        var row: Int?
-        for i in 0...monteurs.count-1 {
-            if monteurs[i] == monteur2 {
-                row = i
+        if needed_data.count != 0 {
+            let onderhoudsdatum2 = needed_data[0].onderhoudsdatum
+            datumLabel?.text = dateFormat.string(from: onderhoudsdatum2)
+            onderhoudsdatum?.date = needed_data[0].onderhoudsdatum
+            let monteur2 = needed_data[0].monteur
+            var row: Int?
+            for i in 0...monteurs.count-1 {
+                if monteurs[i] == monteur2 {
+                    row = i
+                }
             }
+            monteur.selectRow(row!, inComponent: 0, animated: true)
+            monteurLabel?.text = monteur2
+            werkzaamheden?.text = needed_data[0].werkzaamheden
+            Opmerkingen?.text = needed_data[0].opmerkingen
         }
-        monteur.selectRow(row!, inComponent: 0, animated: true)
-        monteurLabel?.text = monteur2
-        werkzaamheden?.text = needed_data[0].werkzaamheden
-        Opmerkingen?.text = needed_data[0].opmerkingen
     }
     
     @objc func save() {
@@ -149,10 +153,11 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         werkzaamheden.isEditable = false
         Opmerkingen.isSelectable = false
         Opmerkingen.isEditable = false
-        if nieuw != 1 {
+        if nieuw != 1 && needed_data.count != 0 {
             let len = needed_data.count
             let ip = onderhoudTableView.indexPathForSelectedRow
-            updata(indexPath: ip!, toestel_id: needed_toestel_id!)
+            let o_id = needed_data[(ip?.row)!].onderhoud_id
+            updata(indexPath: ip!, onderhoud_id: o_id)
             if len > 1 {
                 for index in 0..<len {
                     updateOnderhoud(index: index)
@@ -164,20 +169,25 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         onderhoudTableView.reloadData()
         onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
-        let onderhoudsdatum2 = needed_data[0].onderhoudsdatum
-        datumLabel?.text = dateFormat.string(from: onderhoudsdatum2)
-        onderhoudsdatum?.date = needed_data[0].onderhoudsdatum
-        let monteur2 = needed_data[0].monteur
-        var row: Int?
-        for i in 0...monteurs.count-1 {
-            if monteurs[i] == monteur2 {
-                row = i
+        if needed_data.count != 0 {
+            let onderhoudsdatum2 = needed_data[0].onderhoudsdatum
+            datumLabel?.text = dateFormat.string(from: onderhoudsdatum2)
+            onderhoudsdatum?.date = needed_data[0].onderhoudsdatum
+            let monteur2 = needed_data[0].monteur
+            var row: Int?
+            for i in 0..<monteurs.count {
+                if monteurs[i] == monteur2 {
+                    row = i
+                }
             }
+            monteur.selectRow(row!, inComponent: 0, animated: true)
+            monteurLabel?.text = monteur2
+            werkzaamheden?.text = needed_data[0].werkzaamheden
+            Opmerkingen?.text = needed_data[0].opmerkingen
+        } else {
+            emptyKlant()
         }
-        monteur.selectRow(row!, inComponent: 0, animated: true)
-        monteurLabel?.text = monteur2
-        werkzaamheden?.text = needed_data[0].werkzaamheden
-        Opmerkingen?.text = needed_data[0].opmerkingen
+        
     }
     
     func updateOnderhoud(index: Int) {
@@ -195,19 +205,98 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         update.updateOnderhoud(klant_id: klant_id ?? "", toestel_id: toestel_id ?? "", onderhoudsdatum: datum ?? "", monteur: monteur ?? "", werkzaamheden: needed_data[index].werkzaamheden, opmerkingen: needed_data[index].opmerkingen)
     }
     
-    func updata(indexPath: IndexPath, toestel_id: String) {
-        // HIER GEBLEVEN
+    func updata(indexPath: IndexPath, onderhoud_id: String) {
+        print("UPDATA")
+        let amount = data?.onderhouden.count
+        var date3: Date?
+        var monteur3: String?
+        var werkzaamheden3: String?
+        var opmerkingen3: String?
+        var index1: Int?
+        for index in 0..<amount! {
+            if data?.onderhouden[index].onderhoud_id == onderhoud_id {
+                index1 = index
+                date3 = data?.onderhouden[index].onderhoudsdatum
+                monteur3 = data?.onderhouden[index].monteur
+                werkzaamheden3 = data?.onderhouden[index].werkzaamheden
+                opmerkingen3 = data?.onderhouden[index].opmerkingen
+            }
+        }
+        let date = needed_data[indexPath.row].onderhoudsdatum
+        let date2 = onderhoudsdatum?.date
+        if date != nil && date2 != nil && date3 != nil {
+            if date != date2 {
+                needed_data[indexPath.row].onderhoudsdatum = date2!
+            }
+            if date3 != date2 {
+                data?.onderhouden[index1!].onderhoudsdatum = date2!
+            }
+        }
+        let monteur = needed_data[indexPath.row].monteur as String?
+        let monteur2 = monteurLabel.text
+        if monteur != nil && monteur2 != nil && monteur3 != nil {
+            if monteur != monteur2 {
+                needed_data[indexPath.row].monteur = monteur2!
+            }
+            if monteur3 != monteur2 {
+                data?.onderhouden[index1!].monteur = monteur2!
+            }
+        }
+        if needed_data[indexPath.row].werkzaamheden != werkzaamheden.text {
+            needed_data[indexPath.row].werkzaamheden = werkzaamheden.text
+        }
+        if werkzaamheden3 != werkzaamheden.text {
+            data?.onderhouden[index1!].werkzaamheden = werkzaamheden.text
+        }
+        if needed_data[indexPath.row].opmerkingen != Opmerkingen.text {
+           needed_data[indexPath.row].opmerkingen = Opmerkingen.text
+        }
+        if opmerkingen3 != Opmerkingen.text {
+            data?.onderhouden[index1!].opmerkingen = Opmerkingen.text
+        }
     }
     
     @objc func datafunc(notification: Notification) {
-        needed_toestel_id = notification.userInfo!["toestel_id"] as! String?
+        needed_data.removeAll()
+        needed_toestel_id = notification.userInfo!["Toestel"] as! String?
+        print(needed_toestel_id)
         let count = data?.onderhouden.count
         for index in 0..<count! {
             if needed_toestel_id != nil {
                 if needed_toestel_id == data?.onderhouden[index].toestel_id {
+                    print("TESTERERE")
+                    print(data?.onderhouden[index].onderhoud_id)
                     needed_data.append((data?.onderhouden[index])!)
                 }
             }
+        }
+        onderhoudTableView.reloadData()
+        print(needed_data)
+        onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+        if nieuw == 1  {
+            newKlant()
+        } else if needed_data.count == 0 {
+            emptyKlant()
+        } else {
+            let date = needed_data[0].onderhoudsdatum
+            dateFormat.dateStyle = .full
+            if date != nil {
+                datumLabel?.text = dateFormat.string(from: date)
+                onderhoudsdatum.date = date
+                print(onderhoudsdatum.date)
+            }
+            monteurLabel?.text = needed_data[0].monteur
+            let monteur2 = needed_data[0].monteur
+            var row: Int?
+            for i in 0...monteurs.count-1 {
+                print(monteurs[i])
+                if monteurs[i] == monteur2 {
+                    row = i
+                }
+            }
+            monteur.selectRow(row!, inComponent: 0, animated: true)
+            werkzaamheden?.text = needed_data[0].werkzaamheden
+            Opmerkingen?.text = needed_data[0].opmerkingen
         }
     }
 
@@ -251,7 +340,6 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
             monteurLabel?.text = needed_data[0].monteur
             werkzaamheden?.text = needed_data[0].werkzaamheden
             Opmerkingen?.text = needed_data[0].opmerkingen
-            
             datumLabel.isHidden = false
             onderhoudsdatum.isHidden = true
             monteurLabel.isHidden = false
@@ -286,6 +374,12 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        print("test")
+        let o_id = needed_data[indexPath.row].onderhoud_id
+        updata(indexPath: indexPath, onderhoud_id: o_id)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if nieuw == 1  {
             newKlant()
@@ -294,22 +388,29 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             print(data?.onderhouden.count)
             let date = needed_data[indexPath.row].onderhoudsdatum
+            print(date)
             dateFormat.dateStyle = .full
             if date != nil {
                 datumLabel?.text = dateFormat.string(from: date)
                 onderhoudsdatum.date = date
+                print(onderhoudsdatum.date)
             }
             monteurLabel?.text = needed_data[indexPath.row].monteur
             let monteur2 = needed_data[indexPath.row].monteur
+            print(monteur2)
             var row: Int?
             for i in 0...monteurs.count-1 {
+                print(monteurs[i])
                 if monteurs[i] == monteur2 {
                     row = i
+                    print(row)
                 }
             }
             monteur.selectRow(row!, inComponent: 0, animated: true)
             werkzaamheden?.text = needed_data[indexPath.row].werkzaamheden
             Opmerkingen?.text = needed_data[indexPath.row].opmerkingen
+            
+
         }
     }
     
@@ -323,6 +424,10 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return monteurs[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        monteurLabel?.text = monteurs[row]
     }
     
     

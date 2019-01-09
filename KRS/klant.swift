@@ -128,6 +128,7 @@ struct onderhoud {
     var werkzaamheden: String
     var opmerkingen: String
     var titel: String
+    var onderhoud_id: String
 }
 
 struct onderhoud2: Codable {
@@ -137,6 +138,7 @@ struct onderhoud2: Codable {
     var monteur: String
     var werkzaamheden: String
     var opmerkingen: String
+    var onderhoud_id: String
     
     enum CodingKeys: String, CodingKey {
         case klant_id
@@ -145,6 +147,7 @@ struct onderhoud2: Codable {
         case monteur
         case werkzaamheden
         case opmerkingen
+        case onderhoud_id
     }
 }
 
@@ -155,4 +158,5 @@ struct onderhoud3 {
     var monteur: String
     var werkzaamheden: String
     var opmerkingen: String
+    var onderhoud_id: String
 }

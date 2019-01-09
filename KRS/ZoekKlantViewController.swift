@@ -80,13 +80,14 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
                             klantinfo.toestellen.append(toestelinfo)
                             for onderhoud in testonderhoudgegevens! {
                                 if onderhoud.toestel_id == toestelinfo.toestel_id {
-                                    var onderhoudinfo = onderhoud3(klant_id: "", toestel_id: "", onderhoudsdatum: Date(), monteur: "", werkzaamheden: "", opmerkingen: "")
+                                    var onderhoudinfo = onderhoud3(klant_id: "", toestel_id: "", onderhoudsdatum: Date(), monteur: "", werkzaamheden: "", opmerkingen: "", onderhoud_id: "")
                                     onderhoudinfo.klant_id = onderhoud.klant_id
                                     onderhoudinfo.toestel_id = onderhoud.toestel_id
                                     onderhoudinfo.onderhoudsdatum = dateFormatterGet.date(from: onderhoud.onderhoudsdatum)!
                                     onderhoudinfo.monteur = onderhoud.monteur
                                     onderhoudinfo.werkzaamheden = onderhoud.werkzaamheden
                                     onderhoudinfo.opmerkingen = onderhoud.opmerkingen
+                                    onderhoudinfo.onderhoud_id = onderhoud.onderhoud_id
                                     klantinfo.onderhouden.append(onderhoudinfo)
                                 }
                             }
