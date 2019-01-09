@@ -17,6 +17,9 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     let monteurs = ["Albert Mel", "Mike Visser", "Bart Dekker"]
     var needed_toestel_id: String?
     var needed_data = [onderhoud3]()
+    var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
     
     
     @IBOutlet weak var onderhoudTableView: DesignableTableView!

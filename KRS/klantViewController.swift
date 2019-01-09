@@ -12,6 +12,9 @@ class klantViewController: UIViewController {
     
     var nieuw: Int?
     var data: Klant3?
+    var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
 
     @IBOutlet weak var naam: UITextField!
     @IBOutlet weak var debnr: UITextField!

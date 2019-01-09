@@ -28,6 +28,8 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
     var testtoestelgegevens: [toestel2]?
     
     var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +45,11 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         testklantgegevens = fetch.klantData()
         testonderhoudgegevens = fetch.onderhoudData()
         testtoestelgegevens = fetch.toestelData()
+        klantamount = testklantgegevens?.count
         print(testklantgegevens!)
+        onderhoudamount = testonderhoudgegevens?.count
         print(testonderhoudgegevens!)
+        toestelamount = testtoestelgegevens?.count
         print(testtoestelgegevens!)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd-MM-yyyy"
@@ -234,14 +239,21 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         if segue.identifier == "DetailInfoSegue" {
             let DVC = segue.destination as! DetailViewController
             let index = klantDataTable.indexPathForSelectedRow!.row
+            DVC.klantamount = klantamount
+            DVC.toestelamount = toestelamount
+            DVC.onderhoudamount = onderhoudamount
             if filtered == 1 {
                 DVC.data = filteredklantgegevens[index - 1]
+                
             } else {
                 DVC.data = klantgegevens[index - 1]
             }
         }
         else if segue.identifier == "nieuwSegue" {
             let DVC = segue.destination as! DetailViewController
+            DVC.klantamount = klantamount
+            DVC.toestelamount = toestelamount
+            DVC.onderhoudamount = onderhoudamount
             DVC.nieuw = 1
         }
     }

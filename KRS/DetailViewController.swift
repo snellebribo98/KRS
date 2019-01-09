@@ -20,6 +20,10 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var klantGegevensView: DesignableView!
     
+    var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if nieuw != 1 && editer != 1 {
@@ -45,21 +49,33 @@ class DetailViewController: UIViewController {
             print("HIER")
             KVC.data = data
             KVC.nieuw = nieuw
+            KVC.klantamount = klantamount
+            KVC.toestelamount = toestelamount
+            KVC.onderhoudamount = onderhoudamount
         }
         if segue.identifier == "toestelSegue" {
             let TVC = segue.destination as! toestelViewController
             TVC.data = data
             TVC.nieuw = nieuw
+            TVC.klantamount = klantamount
+            TVC.toestelamount = toestelamount
+            TVC.onderhoudamount = onderhoudamount
         }
         if segue.identifier == "notitiesSegue" {
             let NVC = segue.destination as! notitiesViewController
             NVC.data = data
             NVC.nieuw = nieuw
+            NVC.klantamount = klantamount
+            NVC.toestelamount = toestelamount
+            NVC.onderhoudamount = onderhoudamount
         }
         if segue.identifier == "onderhoudSegue" {
             let OVC = segue.destination as! onderhoudViewController
             OVC.data = data
             OVC.nieuw = nieuw
+            OVC.klantamount = klantamount
+            OVC.toestelamount = toestelamount
+            OVC.onderhoudamount = onderhoudamount
         }
     }
     

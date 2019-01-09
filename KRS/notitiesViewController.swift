@@ -13,6 +13,9 @@ class notitiesViewController: UIViewController {
     var nieuw: Int?
     var data: Klant3?
     public var test = 1
+    var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
     
     @IBOutlet weak var notities: DesignableTextView!
 

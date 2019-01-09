@@ -14,7 +14,10 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     var data: Klant3?
     let dateFormat = DateFormatter()
     var nt: Int?
-    var addtoestel: Int?
+    var addtoestel = 0
+    var klantamount: Int?
+    var toestelamount: Int?
+    var onderhoudamount: Int?
     
     
     @IBOutlet weak var toestelDataTable: DesignableTableView!
@@ -139,25 +142,27 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func save() {
-        if addtoestel == 1 {
-            let create = createData()
-            let endIndex = (data?.toestellen.count)! - 1
-            let dateFormatterGet = DateFormatter()
-            dateFormatterGet.dateFormat = "dd-MM-yyyy"
-            let date = data?.toestellen[endIndex].datum
-            var datum = dateFormatterGet.string(from: date!) as String?
-            datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
-            create.createToestel(
-            klant_id: data?.toestellen[endIndex].klant_id ?? "",
-            toestel_id: data?.toestellen[endIndex].toestel_id ?? "",
-            merk: data?.toestellen[endIndex].merk ?? "",
-            type: data?.toestellen[endIndex].type ?? "",
-            bouwjaar: data?.toestellen[endIndex].bouwjaar ?? "",
-            freq: data?.toestellen[endIndex].freq ?? "",
-            garantie: data?.toestellen[endIndex].garantie ?? "",
-            datum: datum ?? "",
-            serienr: data?.toestellen[endIndex].serienr ?? "",
-            OGP: data?.toestellen[endIndex].serienr ?? "")
+        if addtoestel > 0 {
+            for i in 1...addtoestel {
+                let endIndex = (data?.toestellen.count)! - i
+                let create = createData()
+                let dateFormatterGet = DateFormatter()
+                dateFormatterGet.dateFormat = "dd-MM-yyyy"
+                let date = data?.toestellen[endIndex].datum
+                var datum = dateFormatterGet.string(from: date!) as String?
+                datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
+                create.createToestel(
+                    klant_id: data?.toestellen[endIndex].klant_id ?? "",
+                    toestel_id: data?.toestellen[endIndex].toestel_id ?? "",
+                    merk: data?.toestellen[endIndex].merk ?? "",
+                    type: data?.toestellen[endIndex].type ?? "",
+                    bouwjaar: data?.toestellen[endIndex].bouwjaar ?? "",
+                    freq: data?.toestellen[endIndex].freq ?? "",
+                    garantie: data?.toestellen[endIndex].garantie ?? "",
+                    datum: datum ?? "",
+                    serienr: data?.toestellen[endIndex].serienr ?? "",
+                    OGP: data?.toestellen[endIndex].serienr ?? "")
+            }
         }
         addToestel.isHidden = true
         merk?.isEnabled = false
@@ -345,12 +350,12 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func addToestel(_ sender: Any) {
-        
+        // voeg functie toe om meerdere toestellen in 1 keer toe te voegen
         if nt == 1 {
             
         } else {
-            addtoestel = 1
-            let id = String((data?.toestellen.count)! + 1)
+            addtoestel += 1
+            let id = String(toestelamount!)
             let newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
             data?.toestellen.append(newRow)
             toestelDataTable.reloadData()
