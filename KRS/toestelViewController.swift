@@ -14,6 +14,7 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     var data: Klant3?
     let dateFormat = DateFormatter()
     var nt: Int?
+    var addtoestel: Int?
     
     
     @IBOutlet weak var toestelDataTable: DesignableTableView!
@@ -138,6 +139,26 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @objc func save() {
+        if addtoestel == 1 {
+            let create = createData()
+            let endIndex = (data?.toestellen.count)! - 1
+            let dateFormatterGet = DateFormatter()
+            dateFormatterGet.dateFormat = "dd-MM-yyyy"
+            let date = data?.toestellen[endIndex].datum
+            var datum = dateFormatterGet.string(from: date!) as String?
+            datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
+            create.createToestel(
+            klant_id: data?.toestellen[endIndex].klant_id ?? "",
+            toestel_id: data?.toestellen[endIndex].toestel_id ?? "",
+            merk: data?.toestellen[endIndex].merk ?? "",
+            type: data?.toestellen[endIndex].type ?? "",
+            bouwjaar: data?.toestellen[endIndex].bouwjaar ?? "",
+            freq: data?.toestellen[endIndex].freq ?? "",
+            garantie: data?.toestellen[endIndex].garantie ?? "",
+            datum: datum ?? "",
+            serienr: data?.toestellen[endIndex].serienr ?? "",
+            OGP: data?.toestellen[endIndex].serienr ?? "")
+        }
         addToestel.isHidden = true
         merk?.isEnabled = false
         type?.isEnabled = false
@@ -161,8 +182,6 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let index = 0
                 updatetoestel(index: index)
             }
-            
-            
         }
         toestelDataTable.reloadData()
         toestelDataTable.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
@@ -326,9 +345,11 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func addToestel(_ sender: Any) {
+        
         if nt == 1 {
             
         } else {
+            addtoestel = 1
             let id = String((data?.toestellen.count)! + 1)
             let newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
             data?.toestellen.append(newRow)
