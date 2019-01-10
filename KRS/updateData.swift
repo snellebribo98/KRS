@@ -33,7 +33,7 @@ class updateData {
             //parsing the response
             do {
                 //converting resonse to NSDictionary
-                let myJSON =  try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
+                let myJSON = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers) as? NSDictionary
                 
                 //parsing the json
                 if let parseJSON = myJSON {
@@ -95,6 +95,7 @@ class updateData {
                     
                 }
             } catch {
+                print("ERROR")
                 print(error)
             }
             
@@ -104,9 +105,10 @@ class updateData {
         
     }
     
-    func updateOnderhoud(klant_id: String, toestel_id: String, onderhoudsdatum: String, monteur: String, werkzaamheden: String, opmerkingen: String) {
+    func updateOnderhoud(klant_id: String, toestel_id: String, onderhoudsdatum: String, monteur: String, werkzaamheden: String, opmerkingen: String, onderhoud_id: String) {
         request.httpMethod = "POST"
-        let postParameters = "klant_id_onderhoud=\(klant_id)&toestel_id_onderhoud=\(toestel_id)&onderhoudsdatum_onderhoud=\(onderhoudsdatum)&monteur_onderhoud=\(monteur)&werkzaamheden_onderhoud=\(werkzaamheden)&opmerkingen_onderhoud=\(opmerkingen)&onderhoudupdate=True"
+        let postParameters = "klant_id_onderhoud=\(klant_id)&toestel_id_onderhoud=\(toestel_id)&onderhoudsdatum_onderhoud=\(onderhoudsdatum)&monteur_onderhoud=\(monteur)&werkzaamheden_onderhoud=\(werkzaamheden)&opmerkingen_onderhoud=\(opmerkingen)&onderhoud_id_onderhoud=\(onderhoud_id)&onderhoudupdate=True"
+        print(postParameters)
         
         //adding the parameters to request body
         request.httpBody = postParameters.data(using: String.Encoding.utf8)

@@ -104,9 +104,9 @@ class createData {
         
     }
     
-    func createOnderhoud(klant_id: String, toestel_id: String, onderhoudsdatum: String, monteur: String, werkzaamheden: String, opmerkingen: String) {
+    func createOnderhoud(klant_id: String, toestel_id: String, onderhoudsdatum: String, monteur: String, werkzaamheden: String, opmerkingen: String, onderhoud_id: String) {
         request.httpMethod = "POST"
-        let postParameters = "klant_id_onderhoud=\(klant_id)&toestel_id_onderhoud=\(toestel_id)&onderhoudsdatum_onderhoud=\(onderhoudsdatum)&monteur_onderhoud=\(monteur)&werkzaamheden_onderhoud=\(werkzaamheden)&opmerkingen_onderhoud=\(opmerkingen)&onderhoud=True"
+        let postParameters = "klant_id_onderhoud=\(klant_id)&toestel_id_onderhoud=\(toestel_id)&onderhoudsdatum_onderhoud=\(onderhoudsdatum)&monteur_onderhoud=\(monteur)&werkzaamheden_onderhoud=\(werkzaamheden)&opmerkingen_onderhoud=\(opmerkingen)&onderhoud_id_onderhoud=\(onderhoud_id)&onderhoud=True"
         
         //adding the parameters to request body
         request.httpBody = postParameters.data(using: String.Encoding.utf8)

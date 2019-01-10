@@ -143,8 +143,13 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     @objc func save() {
         if addtoestel > 0 {
+            print("Toestellen")
+            print(addtoestel)
+            print(data?.toestellen)
             for i in 1...addtoestel {
                 let endIndex = (data?.toestellen.count)! - i
+                print("toestel")
+                print(data?.toestellen[endIndex])
                 let create = createData()
                 let dateFormatterGet = DateFormatter()
                 dateFormatterGet.dateFormat = "dd-MM-yyyy"
@@ -350,12 +355,14 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func addToestel(_ sender: Any) {
-        // voeg functie toe om meerdere toestellen in 1 keer toe te voegen
+        
+        let ip = toestelDataTable.indexPathForSelectedRow
+        updata(indexPath: ip!)
         if nt == 1 {
             
         } else {
             addtoestel += 1
-            let id = String(toestelamount!)
+            let id = String(toestelamount! + addtoestel - 1) 
             let newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
             data?.toestellen.append(newRow)
             toestelDataTable.reloadData()
