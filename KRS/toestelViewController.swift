@@ -193,6 +193,7 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
                 updatetoestel(index: index)
             }
         }
+        let nedid = data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id
         toestelDataTable.reloadData()
         toestelDataTable.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
         merk?.text = data?.toestellen[0].merk
@@ -205,9 +206,10 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
         plaatingDatumLabel?.text = dateFormat.string(from: date!)
         plaatsingdatum?.date = date!
         serienr?.text = data?.toestellen[0].serienr
-        
+        print("DATA1")
         let neededData = Notification.Name("Data")
-        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
+        print("DATA1")
+        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": nedid])
     }
     
     func updatetoestel(index: Int) {
@@ -348,6 +350,7 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             serienr?.text = data?.toestellen[indexPath.row].serienr
             let neededData = Notification.Name("Data")
+            print("DATA")
             NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
             
         }

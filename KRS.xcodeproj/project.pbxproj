@@ -20,6 +20,7 @@
 		A91B4C3221D3A8F100CE99C8 /* fetchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B4C3121D3A8F100CE99C8 /* fetchData.swift */; };
 		A91B4C3621D7CEDA00CE99C8 /* updateData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B4C3521D7CEDA00CE99C8 /* updateData.swift */; };
 		A91B4C3821D7CEE400CE99C8 /* createData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B4C3721D7CEE400CE99C8 /* createData.swift */; };
+		A928B9AA21E8AF0D00C5A7F3 /* ZoekToestelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */; };
 		A9AA1A0021D15401004C33B6 /* klantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA19FF21D15401004C33B6 /* klantViewController.swift */; };
 		A9AA1A0221D1580D004C33B6 /* toestelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */; };
 		A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */; };
@@ -42,6 +43,7 @@
 		A91B4C3121D3A8F100CE99C8 /* fetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchData.swift; sourceTree = "<group>"; };
 		A91B4C3521D7CEDA00CE99C8 /* updateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateData.swift; sourceTree = "<group>"; };
 		A91B4C3721D7CEE400CE99C8 /* createData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createData.swift; sourceTree = "<group>"; };
+		A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoekToestelViewController.swift; sourceTree = "<group>"; };
 		A9AA19FF21D15401004C33B6 /* klantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = klantViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toestelViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notitiesViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				A913D77821CFC9DB00EE902D /* ViewController.swift */,
 				A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
+				A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */,
 				A9AA19FF21D15401004C33B6 /* klantViewController.swift */,
 				A913D79221D1272900EE902D /* DetailViewController.swift */,
 				A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */,
@@ -180,6 +183,7 @@
 				A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */,
 				A91B4C3821D7CEE400CE99C8 /* createData.swift in Sources */,
 				A913D78B21CFFDDD00EE902D /* ZoekKlantViewController.swift in Sources */,
+				A928B9AA21E8AF0D00C5A7F3 /* ZoekToestelViewController.swift in Sources */,
 				A913D78F21D01FFA00EE902D /* dataCell.swift in Sources */,
 				A9AA1A0021D15401004C33B6 /* klantViewController.swift in Sources */,
 				A91B4C3621D7CEDA00CE99C8 /* updateData.swift in Sources */,

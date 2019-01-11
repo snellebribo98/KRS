@@ -92,6 +92,7 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
                 onderhoudsdatum.date = date
                 monteur.selectRow(row!, inComponent: 0, animated: true)
             }
+        print(needed_data)
 //            else {
 //                let date = needed_data[0].onderhoudsdatum
 //                onderhoudsdatum.date = date
@@ -147,15 +148,18 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func save() {
+        print("NEEDED1")
+        print(needed_data)
         if addonderhoud > 0 {
             print(needed_data)
             print("Onderhouden")
             print(addonderhoud)
             print(needed_data)
-            if noo == 1 {
-                noo = 0
-                addonderhoud -= 1
-            }
+//            if noo == 1 {
+//                noo = 2
+//                addonderhoud -= 1
+//            }
+            print(addonderhoud)
             for i in 1...addonderhoud {
                 let endIndex = needed_data.count - i
                 print("onderhoud")
@@ -166,17 +170,24 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
                 let date = needed_data[endIndex].onderhoudsdatum
                 var datum = dateFormatterGet.string(from: date) as String?
                 datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
-                create.createOnderhoud(
-                    klant_id: needed_data[endIndex].klant_id,
-                    toestel_id: needed_data[endIndex].toestel_id,
-                    onderhoudsdatum: datum ?? "",
-                    monteur: needed_data[endIndex].monteur,
-                    werkzaamheden: needed_data[endIndex].werkzaamheden,
-                    opmerkingen: needed_data[endIndex].opmerkingen,
-                    onderhoud_id: needed_data[endIndex].onderhoud_id)
-                print("ONDERHOUD")
+                print(needed_data[endIndex].werkzaamheden)
+                if needed_data[endIndex].werkzaamheden != ""
+                {
+                    
+                    create.createOnderhoud(
+                        klant_id: needed_data[endIndex].klant_id,
+                        toestel_id: needed_data[endIndex].toestel_id,
+                        onderhoudsdatum: datum ?? "",
+                        monteur: needed_data[endIndex].monteur,
+                        werkzaamheden: needed_data[endIndex].werkzaamheden,
+                        opmerkingen: needed_data[endIndex].opmerkingen,
+                        onderhoud_id: needed_data[endIndex].onderhoud_id)
+                    print("ONDERHOUD")
+                }
+                
             }
         }
+        addonderhoud = 0
         addOnderhoud.isHidden = true
         datumLabel.isHidden = false
         onderhoudsdatum.isHidden = true
@@ -194,10 +205,14 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         Opmerkingen.isSelectable = false
         Opmerkingen.isEditable = false
         if nieuw != 1 && needed_data.count != 0 {
+            noo = 0
             let len = needed_data.count
             let ip = onderhoudTableView.indexPathForSelectedRow
             let o_id = needed_data[(ip?.row)!].onderhoud_id
+            print("NEEDED_DATA")
+            print(needed_data)
             updata(indexPath: ip!, onderhoud_id: o_id)
+            print(needed_data)
             if len > 1 {
                 for index in 0..<len {
                     updateOnderhoud(index: index)
@@ -298,6 +313,7 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     @objc func datafunc(notification: Notification) {
+        print("DATAFUNC")
         needed_data.removeAll()
         needed_toestel_id = notification.userInfo!["Toestel"] as! String
         print(needed_toestel_id)
@@ -428,6 +444,8 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
 //        } else {
         let o_id = needed_data[indexPath.row].onderhoud_id
         updata(indexPath: indexPath, onderhoud_id: o_id)
+        print("DIDSELECTROW")
+        print(needed_data)
 //        }
         
     }
