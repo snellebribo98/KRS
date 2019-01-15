@@ -108,6 +108,7 @@ class updateData {
     func updateOnderhoud(klant_id: String, toestel_id: String, onderhoudsdatum: String, monteur: String, werkzaamheden: String, opmerkingen: String, onderhoud_id: String) {
         request.httpMethod = "POST"
         let postParameters = "klant_id_onderhoud=\(klant_id)&toestel_id_onderhoud=\(toestel_id)&onderhoudsdatum_onderhoud=\(onderhoudsdatum)&monteur_onderhoud=\(monteur)&werkzaamheden_onderhoud=\(werkzaamheden)&opmerkingen_onderhoud=\(opmerkingen)&onderhoud_id_onderhoud=\(onderhoud_id)&onderhoudupdate=True"
+        print("POST")
         print(postParameters)
         
         //adding the parameters to request body

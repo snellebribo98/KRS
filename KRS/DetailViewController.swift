@@ -70,7 +70,7 @@ class DetailViewController: UIViewController {
             NVC.onderhoudamount = onderhoudamount
         }
         if segue.identifier == "onderhoudSegue" {
-            let OVC = segue.destination as! onderhoudViewController
+            let OVC = segue.destination as! ohViewController
             OVC.data = data
             OVC.nieuw = nieuw
             OVC.klantamount = klantamount

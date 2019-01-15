@@ -23,6 +23,8 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
     var no: Int?
     var addonderhoud = 0
     var noo: Int?
+    var ipTest: IndexPath?
+    var onderhoud_id_test: String?
     
     
     @IBOutlet weak var onderhoudTableView: DesignableTableView!
@@ -93,18 +95,6 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
                 monteur.selectRow(row!, inComponent: 0, animated: true)
             }
         print(needed_data)
-//            else {
-//                let date = needed_data[0].onderhoudsdatum
-//                onderhoudsdatum.date = date
-//                let nr = needed_data[0].monteur
-//                var row: Int?
-//                for i in 0...monteurs.count-1 {
-//                    if monteurs[i] == nr {
-//                        row = i
-//                    }
-//                }
-//                monteur.selectRow(row!, inComponent: 0, animated: true)
-//            }
         }
         
         
@@ -173,7 +163,6 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
                 print(needed_data[endIndex].werkzaamheden)
                 if needed_data[endIndex].werkzaamheden != ""
                 {
-                    
                     create.createOnderhoud(
                         klant_id: needed_data[endIndex].klant_id,
                         toestel_id: needed_data[endIndex].toestel_id,
@@ -209,10 +198,7 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
             let len = needed_data.count
             let ip = onderhoudTableView.indexPathForSelectedRow
             let o_id = needed_data[(ip?.row)!].onderhoud_id
-            print("NEEDED_DATA")
-            print(needed_data)
             updata(indexPath: ip!, onderhoud_id: o_id)
-            print(needed_data)
             if len > 1 {
                 for index in 0..<len {
                     updateOnderhoud(index: index)
@@ -258,6 +244,7 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         let monteur: String?
         monteur = needed_data[index].monteur
         let update = updateData()
+        print(needed_data)
         update.updateOnderhoud(klant_id: klant_id ?? "", toestel_id: toestel_id ?? "", onderhoudsdatum: datum ?? "", monteur: monteur ?? "", werkzaamheden: needed_data[index].werkzaamheden, opmerkingen: needed_data[index].opmerkingen, onderhoud_id: needed_data[index].onderhoud_id)
     }
     
@@ -301,7 +288,9 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         if needed_data[indexPath.row].werkzaamheden != werkzaamheden.text {
             needed_data[indexPath.row].werkzaamheden = werkzaamheden.text
         }
+        print("HIER24")
         if werkzaamheden3 != werkzaamheden.text {
+            print("HIER25")
             data?.onderhouden[index1!].werkzaamheden = werkzaamheden.text
         }
         if needed_data[indexPath.row].opmerkingen != Opmerkingen.text {
@@ -312,8 +301,52 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    func updateFullData()
+    {
+        print("IP")
+        print(ipTest)
+        print(onderhoud_id_test)
+        if onderhoud_id_test != nil
+        {
+            var needed_index: Int?
+            let amount = data?.onderhouden.count
+            for index in 0..<amount! {
+                if data?.onderhouden[index].onderhoud_id == onderhoud_id_test {
+                    needed_index = index
+                    break
+                }
+            }
+            if data?.onderhouden[needed_index!].onderhoudsdatum != onderhoudsdatum.date
+            {
+//                print(data?.onderhouden[needed_index!].onderhoudsdatum)
+//                print(onderhoudsdatum.date)
+                data?.onderhouden[needed_index!].onderhoudsdatum = onderhoudsdatum.date
+            }
+            if data?.onderhouden[needed_index!].monteur != monteurLabel.text
+            {
+//                print(data?.onderhouden[needed_index!].monteur)
+//                print(monteurLabel.text)
+                data?.onderhouden[needed_index!].monteur = monteurLabel.text ?? "Albert Mel"
+            }
+            if data?.onderhouden[needed_index!].werkzaamheden != werkzaamheden.text
+            {
+//                print(data?.onderhouden[needed_index!].werkzaamheden)
+//                print(werkzaamheden.text)
+                data?.onderhouden[needed_index!].werkzaamheden = werkzaamheden.text
+            }
+            if data?.onderhouden[needed_index!].opmerkingen != Opmerkingen.text
+            {
+//                print(data?.onderhouden[needed_index!].opmerkingen)
+//                print(Opmerkingen.text)
+                data?.onderhouden[needed_index!].opmerkingen = Opmerkingen.text
+            }
+        }
+    }
+    
     @objc func datafunc(notification: Notification) {
         print("DATAFUNC")
+        updateFullData()
+        print(data)
         needed_data.removeAll()
         needed_toestel_id = notification.userInfo!["Toestel"] as! String
         print(needed_toestel_id)
@@ -321,15 +354,19 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
         for index in 0..<count! {
             if needed_toestel_id != nil {
                 if needed_toestel_id == data?.onderhouden[index].toestel_id {
-                    print("TESTERERE")
+//                    print("TESTERERE")
                     print(data?.onderhouden[index].onderhoud_id)
                     needed_data.append((data?.onderhouden[index])!)
                     
                 }
             }
         }
+        ipTest = onderhoudTableView.indexPathForSelectedRow
+        onderhoud_id_test = needed_data[ipTest!.row].onderhoud_id
+        print(ipTest)
+        print(onderhoud_id_test)
         onderhoudTableView.reloadData()
-        print(needed_data)
+//        print(needed_data)
         onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
         if nieuw == 1  {
             newKlant()
@@ -443,6 +480,8 @@ class onderhoudViewController: UIViewController, UITableViewDelegate, UITableVie
 //
 //        } else {
         let o_id = needed_data[indexPath.row].onderhoud_id
+//        ipTest = indexPath
+//        onderhoud_id_test = o_id
         updata(indexPath: indexPath, onderhoud_id: o_id)
         print("DIDSELECTROW")
         print(needed_data)
