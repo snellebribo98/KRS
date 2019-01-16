@@ -48,7 +48,9 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
         let neededData = Notification.Name("Data")
         print(toestelDataTable.indexPathForSelectedRow!.row)
         if data?.toestellen.count != 0 {
+            print("NOTIFICATION")
             NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
+            print(data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id)
         }
         
         if nieuw == 1 {
@@ -360,9 +362,42 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBAction func addToestel(_ sender: Any) {
         
         let ip = toestelDataTable.indexPathForSelectedRow
-        updata(indexPath: ip!)
+        if data?.toestellen.count != 0
+        {
+            updata(indexPath: ip!)
+        }
+        
         if nt == 1 {
-            
+            if type?.text == ""
+            {
+                print("VUL info in")
+            }
+            else
+            {
+                addtoestel += 1
+                var id = String(toestelamount! + addtoestel - 1)
+                var newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
+                data?.toestellen.append(newRow)
+                updata(indexPath: ip!)
+                
+                addtoestel += 1
+                id = String(toestelamount! + addtoestel - 1)
+                newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
+                data?.toestellen.append(newRow)
+                toestelDataTable.reloadData()
+                let endIndex = (data?.toestellen.count)! - 1
+                toestelDataTable.selectRow(at: IndexPath(row: endIndex, section: 0), animated: true, scrollPosition: .top)
+                merk?.text = data?.toestellen[endIndex].merk
+                type?.text = data?.toestellen[endIndex].type
+                bouwjaar?.text = data?.toestellen[endIndex].bouwjaar
+                freq?.text = data?.toestellen[endIndex].freq
+                garantie?.text = data?.toestellen[endIndex].garantie
+                ogp?.text = data?.toestellen[endIndex].OGP
+                let date = data?.toestellen[endIndex].datum
+                plaatingDatumLabel?.text = dateFormat.string(from: date!)
+                plaatsingdatum?.date = date!
+                serienr?.text = data?.toestellen[endIndex].serienr
+            }
         } else {
             addtoestel += 1
             let id = String(toestelamount! + addtoestel - 1) 
