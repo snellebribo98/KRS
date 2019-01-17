@@ -33,7 +33,7 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        createData()
+//        createData()
         fetchIets()
         klantDataTable.delegate = self
         klantDataTable.dataSource = self
@@ -108,11 +108,11 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
-    func createData() {
-        let dateFormatterGet = DateFormatter()
-        dateFormatterGet.dateFormat = "dd-MM-yyyy"
-        
-    }
+//    func createData() {
+//        let dateFormatterGet = DateFormatter()
+//        dateFormatterGet.dateFormat = "dd-MM-yyyy"
+//
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -180,9 +180,12 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
                     }
                     cell.type?.text = types
                     cell.OGP?.text = ogps
-                } else {
+                } else if toestellen.count == 1 {
                     cell.type?.text = "\(toestellen[0].merk) \(toestellen[0].type)"
                     cell.OGP?.text = "\(toestellen[0].OGP)"
+                } else {
+                    cell.type?.text = "Geen"
+                    cell.OGP?.text = "Onbekend"
                 }
                 return cell
             }
@@ -211,26 +214,31 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
                 if naamTextField.text!.isEmpty == false {
                     totaal += 1
                     // alternative: not case sensitive
-                    if data.naam.lowercased().range(of:naamTextField.text!) != nil {
+                    if data.naam.lowercased().range(of:naamTextField.text!.lowercased()) != nil {
                         overeen += 1
                     }
                 }
                 if straatTextField.text!.isEmpty == false {
                     totaal += 1
-                    if data.straat.lowercased().range(of:straatTextField.text!) != nil {
+                    if data.straat.lowercased().range(of:straatTextField.text!.lowercased()) != nil {
                         overeen += 1
                     }
                 }
                 if woonplaatsTextField.text!.isEmpty == false {
                     totaal += 1
-                    if data.woonplaats.lowercased().range(of:woonplaatsTextField.text!) != nil {
+                    print(woonplaatsTextField.text!)
+                    print(data.woonplaats)
+                    if data.woonplaats.lowercased().range(of:woonplaatsTextField.text!.lowercased()) != nil {
                         overeen += 1
                     }
                 }
+                print(totaal)
+                print(overeen)
                 if totaal == overeen {
                     filteredklantgegevens.append(data)
                 }
             }
+            print(filteredklantgegevens)
             klantDataTable.reloadData()
         }
     }

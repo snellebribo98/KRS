@@ -12,11 +12,13 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var nieuw: Int?
     var data: Klant3?
+    var backupData: Klant3?
     let dateFormat = DateFormatter()
     var nt: Int?
     var addtoestel = 0
     var klantamount: Int?
     var toestelamount: Int?
+    var backuptoestelamount: Int?
     var onderhoudamount: Int?
     
     
@@ -36,6 +38,8 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        backupData = data
+        backuptoestelamount = toestelamount
         
         dateFormat.dateStyle = .full
         dateFormat.timeStyle = .none
@@ -152,23 +156,27 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let endIndex = (data?.toestellen.count)! - i
                 print("toestel")
                 print(data?.toestellen[endIndex])
-                let create = createData()
-                let dateFormatterGet = DateFormatter()
-                dateFormatterGet.dateFormat = "dd-MM-yyyy"
-                let date = data?.toestellen[endIndex].datum
-                var datum = dateFormatterGet.string(from: date!) as String?
-                datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
-                create.createToestel(
-                    klant_id: data?.toestellen[endIndex].klant_id ?? "",
-                    toestel_id: data?.toestellen[endIndex].toestel_id ?? "",
-                    merk: data?.toestellen[endIndex].merk ?? "",
-                    type: data?.toestellen[endIndex].type ?? "",
-                    bouwjaar: data?.toestellen[endIndex].bouwjaar ?? "",
-                    freq: data?.toestellen[endIndex].freq ?? "",
-                    garantie: data?.toestellen[endIndex].garantie ?? "",
-                    datum: datum ?? "",
-                    serienr: data?.toestellen[endIndex].serienr ?? "",
-                    OGP: data?.toestellen[endIndex].serienr ?? "")
+                if data?.toestellen[endIndex].merk != ""
+                {
+                    let create = createData()
+                    let dateFormatterGet = DateFormatter()
+                    dateFormatterGet.dateFormat = "dd-MM-yyyy"
+                    let date = data?.toestellen[endIndex].datum
+                    var datum = dateFormatterGet.string(from: date!) as String?
+                    datum = datum!.replacingOccurrences(of: " ", with: "-", options: .literal, range: nil)
+                    create.createToestel(
+                        klant_id: data?.toestellen[endIndex].klant_id ?? "",
+                        toestel_id: data?.toestellen[endIndex].toestel_id ?? "",
+                        merk: data?.toestellen[endIndex].merk ?? "",
+                        type: data?.toestellen[endIndex].type ?? "",
+                        bouwjaar: data?.toestellen[endIndex].bouwjaar ?? "",
+                        freq: data?.toestellen[endIndex].freq ?? "",
+                        garantie: data?.toestellen[endIndex].garantie ?? "",
+                        datum: datum ?? "",
+                        serienr: data?.toestellen[endIndex].serienr ?? "",
+                        OGP: data?.toestellen[endIndex].serienr ?? "")
+                }
+                
             }
         }
         addToestel.isHidden = true
@@ -374,14 +382,14 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             }
             else
             {
-                addtoestel += 1
-                var id = String(toestelamount! + addtoestel - 1)
+                toestelamount! += 1
+                var id = String(toestelamount! - 1)
                 var newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
                 data?.toestellen.append(newRow)
                 updata(indexPath: ip!)
                 
-                addtoestel += 1
-                id = String(toestelamount! + addtoestel - 1)
+                toestelamount! += 1
+                id = String(toestelamount! - 1)
                 newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
                 data?.toestellen.append(newRow)
                 toestelDataTable.reloadData()
@@ -398,7 +406,29 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
                 plaatsingdatum?.date = date!
                 serienr?.text = data?.toestellen[endIndex].serienr
             }
-        } else {
+        }
+        else if nt == 2
+        {
+            toestelamount! += 1
+            let id = String(toestelamount! - 1)
+            let newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
+            data?.toestellen.append(newRow)
+            toestelDataTable.reloadData()
+            let endIndex = (data?.toestellen.count)! - 1
+            toestelDataTable.selectRow(at: IndexPath(row: endIndex, section: 0), animated: true, scrollPosition: .top)
+            merk?.text = data?.toestellen[endIndex].merk
+            type?.text = data?.toestellen[endIndex].type
+            bouwjaar?.text = data?.toestellen[endIndex].bouwjaar
+            freq?.text = data?.toestellen[endIndex].freq
+            garantie?.text = data?.toestellen[endIndex].garantie
+            ogp?.text = data?.toestellen[endIndex].OGP
+            let date = data?.toestellen[endIndex].datum
+            plaatingDatumLabel?.text = dateFormat.string(from: date!)
+            plaatsingdatum?.date = date!
+            serienr?.text = data?.toestellen[endIndex].serienr
+        }
+        else
+        {
             addtoestel += 1
             let id = String(toestelamount! + addtoestel - 1) 
             let newRow = toestel3(klant_id: data?.klant_id ?? "", toestel_id: id, merk: "", type: "Nieuw Toestel", bouwjaar: "", freq: "", garantie: "", datum: Date(), serienr: "", OGP: "")
