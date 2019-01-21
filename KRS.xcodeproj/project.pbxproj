@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		435F647AF3070636225804B7 /* Pods_KRS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BF98901461C8423E6CA50 /* Pods_KRS.framework */; };
 		A913D77721CFC9DB00EE902D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A913D77621CFC9DB00EE902D /* AppDelegate.swift */; };
 		A913D77921CFC9DB00EE902D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A913D77821CFC9DB00EE902D /* ViewController.swift */; };
 		A913D77C21CFC9DB00EE902D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A913D77A21CFC9DB00EE902D /* Main.storyboard */; };
@@ -26,9 +27,12 @@
 		A9AA1A0221D1580D004C33B6 /* toestelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */; };
 		A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */; };
 		A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */; };
+		A9CF2F1B21F5F626008803C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B8BF98901461C8423E6CA50 /* Pods_KRS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KRS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		905B11C9CEE76A5D40ECDA4E /* Pods-KRS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.release.xcconfig"; sourceTree = "<group>"; };
 		A913D77321CFC9DB00EE902D /* KRS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KRS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A913D77621CFC9DB00EE902D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A913D77821CFC9DB00EE902D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,6 +54,8 @@
 		A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toestelViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notitiesViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudViewController.swift; sourceTree = "<group>"; };
+		A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				435F647AF3070636225804B7 /* Pods_KRS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +75,8 @@
 			children = (
 				A913D77521CFC9DB00EE902D /* KRS */,
 				A913D77421CFC9DB00EE902D /* Products */,
+				F7ED3AE01200274995255F43 /* Pods */,
+				EE5313B1862C09FD3138B687 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +95,7 @@
 				A913D77821CFC9DB00EE902D /* ViewController.swift */,
 				A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
+				A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */,
 				A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */,
 				A9AA19FF21D15401004C33B6 /* klantViewController.swift */,
 				A913D79221D1272900EE902D /* DetailViewController.swift */,
@@ -106,6 +116,23 @@
 			path = KRS;
 			sourceTree = "<group>";
 		};
+		EE5313B1862C09FD3138B687 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7B8BF98901461C8423E6CA50 /* Pods_KRS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F7ED3AE01200274995255F43 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */,
+				905B11C9CEE76A5D40ECDA4E /* Pods-KRS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -113,9 +140,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A913D78521CFC9DD00EE902D /* Build configuration list for PBXNativeTarget "KRS" */;
 			buildPhases = (
+				7B137359B241F6F5FE1DA86E /* [CP] Check Pods Manifest.lock */,
 				A913D76F21CFC9DB00EE902D /* Sources */,
 				A913D77021CFC9DB00EE902D /* Frameworks */,
 				A913D77121CFC9DB00EE902D /* Resources */,
+				FBA8125CEE425A8BE0F1A521 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -172,6 +201,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		7B137359B241F6F5FE1DA86E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-KRS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FBA8125CEE425A8BE0F1A521 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-KRS/Pods-KRS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CVCalendar/CVCalendar.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CVCalendar.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-KRS/Pods-KRS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A913D76F21CFC9DB00EE902D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -179,6 +255,7 @@
 			files = (
 				A9AA1A0221D1580D004C33B6 /* toestelViewController.swift in Sources */,
 				A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */,
+				A9CF2F1B21F5F626008803C4 /* CalendarViewController.swift in Sources */,
 				A91B4C3221D3A8F100CE99C8 /* fetchData.swift in Sources */,
 				A913D77921CFC9DB00EE902D /* ViewController.swift in Sources */,
 				A913D77721CFC9DB00EE902D /* AppDelegate.swift in Sources */,
@@ -336,6 +413,7 @@
 		};
 		A913D78621CFC9DD00EE902D /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -354,6 +432,7 @@
 		};
 		A913D78721CFC9DD00EE902D /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 905B11C9CEE76A5D40ECDA4E /* Pods-KRS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

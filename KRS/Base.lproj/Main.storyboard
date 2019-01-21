@@ -305,19 +305,79 @@
         <!--Agenda-->
         <scene sceneID="2qe-9m-5La">
             <objects>
-                <viewController id="0Bm-QH-IhA" sceneMemberID="viewController">
+                <viewController id="0Bm-QH-IhA" customClass="CalendarViewController" customModule="KRS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lbU-SZ-0Dp">
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OU4-oG-lgJ" customClass="CVCalendarView" customModule="CVCalendar">
+                                <rect key="frame" x="20" y="137" width="1326" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QXf-Au-2vb">
+                                <rect key="frame" x="20" y="61" width="47" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Maand"/>
+                                <connections>
+                                    <action selector="toggleWeekMonthView" destination="0Bm-QH-IhA" eventType="touchUpInside" id="upD-Vu-YSG"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WOf-p9-DLp">
+                                <rect key="frame" x="312" y="66" width="742" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lJ9-Cp-oto">
+                                <rect key="frame" x="1286" y="61" width="60" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Vandaag"/>
+                                <connections>
+                                    <action selector="todayMonthView" destination="0Bm-QH-IhA" eventType="touchUpInside" id="FFz-AP-QUv"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nw1-ya-pXh">
+                                <rect key="frame" x="209" y="62" width="95" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Vorige maand"/>
+                                <connections>
+                                    <action selector="previousView" destination="0Bm-QH-IhA" eventType="touchUpInside" id="PEQ-5X-TWc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7yn-9k-VhS">
+                                <rect key="frame" x="1062" y="62" width="105" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Volgende week"/>
+                                <connections>
+                                    <action selector="nextView" destination="0Bm-QH-IhA" eventType="touchUpInside" id="JYq-Zy-Vmz"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ygs-le-qSx" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                <rect key="frame" x="0.0" y="99" width="1366" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="JDw-J5-KOG"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Agenda" id="KS0-br-qZu"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="calendarView" destination="OU4-oG-lgJ" id="Gau-sP-Tge"/>
+                        <outlet property="datumLabel" destination="WOf-p9-DLp" id="W98-Xs-fTX"/>
+                        <outlet property="menuView" destination="Ygs-le-qSx" id="q7Q-kM-pO7"/>
+                        <outlet property="nextButton" destination="7yn-9k-VhS" id="0gm-4W-1bh"/>
+                        <outlet property="previousButton" destination="nw1-ya-pXh" id="R5N-ex-1Hv"/>
+                        <outlet property="toggleButton" destination="QXf-Au-2vb" id="v1g-DQ-nwn"/>
+                        <outlet property="vandaagButton" destination="lJ9-Cp-oto" id="nLi-FE-Nym"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qJo-75-od6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="105" y="285"/>
+            <point key="canvasLocation" x="104.97803806734991" y="284.765625"/>
         </scene>
         <!--User-->
         <scene sceneID="UwM-PR-ly9">

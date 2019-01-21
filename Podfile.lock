@@ -1,0 +1,16 @@
+PODS:
+  - CVCalendar (1.6.2)
+
+DEPENDENCIES:
+  - CVCalendar (~> 1.6.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - CVCalendar
+
+SPEC CHECKSUMS:
+  CVCalendar: 515092247b9c5059855643c2a2220f259bd5417f
+
+PODFILE CHECKSUM: 978520c27f53e4fb0cd9d5fab4880447302f36f2
+
+COCOAPODS: 1.5.3
