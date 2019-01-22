@@ -28,6 +28,9 @@
 		A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */; };
 		A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */; };
 		A9CF2F1B21F5F626008803C4 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */; };
+		A9CF2F1D21F752AC008803C4 /* NAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1C21F752AC008803C4 /* NAViewController.swift */; };
+		A9CF2F1F21F752C5008803C4 /* AfsprakenOverzichtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */; };
+		A9CF2F2121F78B52008803C4 /* onderhoudCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +58,9 @@
 		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notitiesViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudViewController.swift; sourceTree = "<group>"; };
 		A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		A9CF2F1C21F752AC008803C4 /* NAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewController.swift; sourceTree = "<group>"; };
+		A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfsprakenOverzichtViewController.swift; sourceTree = "<group>"; };
+		A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudCell.swift; sourceTree = "<group>"; };
 		AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,6 +101,9 @@
 				A913D77821CFC9DB00EE902D /* ViewController.swift */,
 				A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
+				A9CF2F1C21F752AC008803C4 /* NAViewController.swift */,
+				A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */,
+				A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */,
 				A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */,
 				A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */,
 				A9AA19FF21D15401004C33B6 /* klantViewController.swift */,
@@ -265,11 +274,14 @@
 				A91B4C3821D7CEE400CE99C8 /* createData.swift in Sources */,
 				A913D78B21CFFDDD00EE902D /* ZoekKlantViewController.swift in Sources */,
 				A928B9AA21E8AF0D00C5A7F3 /* ZoekToestelViewController.swift in Sources */,
+				A9CF2F1F21F752C5008803C4 /* AfsprakenOverzichtViewController.swift in Sources */,
 				A913D78F21D01FFA00EE902D /* dataCell.swift in Sources */,
 				A9AA1A0021D15401004C33B6 /* klantViewController.swift in Sources */,
 				A91B4C3621D7CEDA00CE99C8 /* updateData.swift in Sources */,
 				A913D78921CFEDCA00EE902D /* DesignableView.swift in Sources */,
 				A913D79321D1272900EE902D /* DetailViewController.swift in Sources */,
+				A9CF2F2121F78B52008803C4 /* onderhoudCell.swift in Sources */,
+				A9CF2F1D21F752AC008803C4 /* NAViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

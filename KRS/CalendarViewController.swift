@@ -20,10 +20,16 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     @IBOutlet weak var datumLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var vandaagButton: UIButton!
+    @IBOutlet weak var newButton: UIButton!
     
     private var periodType: String = "Month"
     private var selectedDay: DayView!
     private var currentCalendar: Calendar?
+    
+    var afspraken: [onderhoud2]?
+    var onderhouddatums = [Date?]()
+    var start = 1
+    var needed_date = Date() as Date?
     
     override func awakeFromNib() {
         currentCalendar = Calendar(identifier: .gregorian)
@@ -36,13 +42,16 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("HIER")
+        fetchAfspraken()
         if let currentCalendar = currentCalendar {
             datumLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
+        calendarView.backgroundColor = .white
         
         calendarView.delegate = self
         menuView.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
@@ -51,6 +60,41 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         
         menuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
+    }
+    
+    func topMarker(shouldDisplayOnDayView dayView: CVCalendarDayView) -> Bool { return true }
+    
+    func dotMarker(colorOnDayView dayView: DayView) -> [UIColor] {
+        return [.red]
+    }
+    
+    func dotMarker(shouldMoveOnHighlightingOnDayView dayView: DayView) -> Bool {
+        return false
+    }
+    
+    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
+        let day = dayView.date.convertedDate() //To get the Day from the Calender
+        
+        if onderhouddatums.contains(day)
+        {
+            return true
+        }
+        return false
+    }
+    
+    func fetchAfspraken()
+    {
+        let fetch = fetchDatas()
+        afspraken = fetch.onderhoudData()
+        
+        for onderhoud in afspraken!
+        {
+            let date = DateFormatter()
+            date.dateFormat = "dd-MM-yyyy"
+            let datum = date.date(from: onderhoud.onderhoudsdatum)
+            onderhouddatums.append(datum)
+        }
+        
     }
     
     func presentationMode() -> CalendarMode {
@@ -71,11 +115,17 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         if periodType == "Month"
         {
             periodType = "Week"
+            toggleButton.setTitle("Week", for: .normal)
+            previousButton.setTitle("Vorige Week", for: .normal)
+            nextButton.setTitle("Volgende Week", for: .normal)
             calendarView.changeMode(.weekView)
         }
         else if periodType == "Week"
         {
             periodType = "Month"
+            toggleButton.setTitle("Maand", for: .normal)
+            previousButton.setTitle("Vorige Maand", for: .normal)
+            nextButton.setTitle("Volgende Maand", for: .normal)
             calendarView.changeMode(.monthView)
         }
     }
@@ -83,7 +133,6 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     @IBAction func nextView()
     {
         calendarView.loadNextView()
-        presentedDateUpdated(<#T##date: CVDate##CVDate#>)
     }
 
     @IBAction func previousView()
@@ -124,5 +173,40 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
             
             self.view.insertSubview(updatedMonthLabel, aboveSubview: self.datumLabel)
         }
+    }
+    
+    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool) {
+        if start == 1
+        {
+            start = 0
+        }
+        else if start == 0
+        {
+            needed_date = dayView.date.convertedDate()
+            performSegue(withIdentifier: "AfsprakenSegue2", sender: self)
+        }
+        
+    }
+    
+    @IBAction func nieuweAfspraak(_ sender: Any) {
+        performSegue(withIdentifier: "nieuweAfspraakSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "nieuweAfspraakSegue"
+        {
+            print("HIER2")
+            let NAVC = segue.destination as! NAViewController
+            NAVC.date = needed_date
+        }
+        else if segue.identifier == "AfsprakenSegue2"
+        {
+            let AO = segue.destination as! AfsprakenOverzichtViewController
+            AO.date = needed_date
+        }
+    }
+    
+    @IBAction func unwindToCalendarView(segue: UIStoryboardSegue) {
+        
     }
 }
