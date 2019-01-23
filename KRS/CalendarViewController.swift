@@ -29,6 +29,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     var afspraken: [onderhoud2]?
     var onderhouddatums = [Date?]()
     var start = 1
+    var nieuw: Int?
     var needed_date = Date() as Date?
     
     override func awakeFromNib() {
@@ -189,20 +190,40 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     }
     
     @IBAction func nieuweAfspraak(_ sender: Any) {
-        performSegue(withIdentifier: "nieuweAfspraakSegue", sender: self)
+        let alert = UIAlertController(title: "Ja of Nee?", message: "Staat de klant al in het systeem of is het een nieuwe klant?", preferredStyle: .alert)
+        var keuze: String?
+        nieuw = 0
+        
+        alert.addAction(UIAlertAction(title: "Ja", style: .default, handler: {action in self.performSegue(withIdentifier: "nieuweAfspraakSegue", sender: self)}))
+        alert.addAction(UIAlertAction(title: "Nee", style: .default, handler: {action in nee()}))
+        self.present(alert, animated: true)
+        
+        func nee()
+        {
+            nieuw = 1
+            let alert2 = UIAlertController(title: "Ja of Nee?", message: "Wilt u een nieuwe klant aanmaken", preferredStyle: .alert)
+            alert2.addAction(UIAlertAction(title: "Ja", style: .default, handler: {action in self.performSegue(withIdentifier: "nieuweKlantSegue", sender: self)}))
+            alert2.addAction(UIAlertAction(title: "Nee", style: .default, handler: {action in self.performSegue(withIdentifier: "nieuweAfspraakSegue", sender: self)}))
+            self.present(alert2, animated: true)
+        }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "nieuweAfspraakSegue"
         {
-            print("HIER2")
             let NAVC = segue.destination as! NAViewController
             NAVC.date = needed_date
+            NAVC.nieuw = nieuw
         }
         else if segue.identifier == "AfsprakenSegue2"
         {
             let AO = segue.destination as! AfsprakenOverzichtViewController
             AO.date = needed_date
+        }
+        else if segue.identifier == "nieuweKlantSegue"
+        {
+            let DVC = segue.destination as! DetailViewController
         }
     }
     

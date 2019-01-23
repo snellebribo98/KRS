@@ -105,7 +105,6 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
             }
         }
         klantamount = klantgegevens.count
-        
     }
     
 //    func createData() {

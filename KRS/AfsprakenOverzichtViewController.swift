@@ -19,6 +19,7 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
     var needed_onderhoud = [onderhoud2]()
     var klantenLijst = [String]()
     var toestellenLijst = [String]()
+    var selected_onderhoud: onderhoud2?
 
     @IBOutlet weak var bar: UINavigationItem!
     @IBOutlet weak var overzichtTableView: UITableView!
@@ -93,6 +94,19 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
             cell.toestelLabel.text = toestellenLijst[indexPath.row - 1]
             cell.werkzaamhedenLabel.text = needed_onderhoud[indexPath.row - 1].werkzaamheden
             return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selected_onderhoud = needed_onderhoud[indexPath.row - 1]
+        performSegue(withIdentifier: "editSegue", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "editSegue"
+        {
+            let EOVC = segue.destination as! EditOnderhoudViewController
+            EOVC.backup_onderhoud = selected_onderhoud
         }
     }
 

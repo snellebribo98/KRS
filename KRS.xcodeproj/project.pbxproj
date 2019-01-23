@@ -31,6 +31,7 @@
 		A9CF2F1D21F752AC008803C4 /* NAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1C21F752AC008803C4 /* NAViewController.swift */; };
 		A9CF2F1F21F752C5008803C4 /* AfsprakenOverzichtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */; };
 		A9CF2F2121F78B52008803C4 /* onderhoudCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */; };
+		A9CF2F2321F88552008803C4 /* EditOnderhoudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		A9CF2F1C21F752AC008803C4 /* NAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewController.swift; sourceTree = "<group>"; };
 		A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfsprakenOverzichtViewController.swift; sourceTree = "<group>"; };
 		A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudCell.swift; sourceTree = "<group>"; };
+		A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOnderhoudViewController.swift; sourceTree = "<group>"; };
 		AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,6 +103,7 @@
 				A913D77821CFC9DB00EE902D /* ViewController.swift */,
 				A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
+				A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */,
 				A9CF2F1C21F752AC008803C4 /* NAViewController.swift */,
 				A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */,
 				A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */,
@@ -271,6 +274,7 @@
 				A913D79121D0391A00EE902D /* klant.swift in Sources */,
 				A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */,
 				A928B9AC21ECBC0900C5A7F3 /* ohViewController.swift in Sources */,
+				A9CF2F2321F88552008803C4 /* EditOnderhoudViewController.swift in Sources */,
 				A91B4C3821D7CEE400CE99C8 /* createData.swift in Sources */,
 				A913D78B21CFFDDD00EE902D /* ZoekKlantViewController.swift in Sources */,
 				A928B9AA21E8AF0D00C5A7F3 /* ZoekToestelViewController.swift in Sources */,
