@@ -10,6 +10,7 @@ import UIKit
 
 class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    var date2: Date?
 
     @IBOutlet weak var datumPicker: UIDatePicker!
     @IBOutlet weak var monteurPicker: UIPickerView!
@@ -30,12 +31,21 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
         super.viewDidLoad()
         onderhoud = backup_onderhoud
         editandcancel.title = "Edit"
+        print(editandcancel.title)
+        print(doneandsave.title)
         doneandsave.title = "Done"
+        print(doneandsave.title)
         
         datumPicker.isHidden = true
         monteurPicker.isHidden = true
         datumLabel.isHidden = false
         monteurLabel.isHidden = false
+        
+        monteurPicker.delegate = self
+        monteurPicker.dataSource = self
+        
+        datumPicker.datePickerMode = .date
+        datumPicker.locale = Locale(identifier: "nl_NL")
         
         datumLabel.text = backup_onderhoud?.onderhoudsdatum
         monteurLabel.text = backup_onderhoud?.monteur
@@ -128,7 +138,7 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func done()
     {
-        
+        performSegue(withIdentifier: "backSegue", sender: self)
     }
     
     func save()
@@ -152,6 +162,22 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
             onderhoud_id: onderhoud?.onderhoud_id ?? "")
         
         backup_onderhoud = onderhoud
+        
+        datumPicker.isHidden = true
+        monteurPicker.isHidden = true
+        datumLabel.isHidden = false
+        monteurLabel.isHidden = false
+        
+        datumLabel.text = onderhoud!.onderhoudsdatum
+        monteurLabel.text = onderhoud!.monteur
+        
+        werkzaamheden.isEditable = false
+        werkzaamheden.isSelectable = false
+        werkzaamheden.text = onderhoud!.werkzaamheden
+        
+        opmerkingen.isEditable = false
+        opmerkingen.isSelectable = false
+        opmerkingen.text = onderhoud!.opmerkingen
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -164,5 +190,13 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return monteurs[row]
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "backSegue"
+        {
+            let AOVC = segue.destination as! AfsprakenOverzichtViewController
+            AOVC.date = date2
+        }
     }
 }

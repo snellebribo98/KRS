@@ -12,6 +12,7 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
     
     var date: Date?
     var datum: String?
+    var nieuw: Int?
     
     var all_onderhoud: [onderhoud2]?
     var all_klanten: [Klant2]?
@@ -98,8 +99,30 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selected_onderhoud = needed_onderhoud[indexPath.row - 1]
-        performSegue(withIdentifier: "editSegue", sender: self)
+        if indexPath.row != 0
+        {
+            selected_onderhoud = needed_onderhoud[indexPath.row - 1]
+            performSegue(withIdentifier: "editSegue", sender: self)
+        }
+    }
+    
+    @IBAction func addOnderhoud(_ sender: Any) {
+        let alert = UIAlertController(title: "Ja of Nee?", message: "Staat de klant al in het systeem of is het een nieuwe klant?", preferredStyle: .alert)
+        var keuze: String?
+        nieuw = 0
+        
+        alert.addAction(UIAlertAction(title: "Ja", style: .default, handler: {action in self.performSegue(withIdentifier: "addSegue", sender: self)}))
+        alert.addAction(UIAlertAction(title: "Nee", style: .default, handler: {action in nee()}))
+        self.present(alert, animated: true)
+        
+        func nee()
+        {
+            nieuw = 1
+            let alert2 = UIAlertController(title: "Ja of Nee?", message: "Wilt u een nieuwe klant aanmaken", preferredStyle: .alert)
+            alert2.addAction(UIAlertAction(title: "Ja", style: .default, handler: {action in self.performSegue(withIdentifier: "addKlantSegue", sender: self)}))
+            alert2.addAction(UIAlertAction(title: "Nee", style: .default, handler: {action in self.performSegue(withIdentifier: "addSegue", sender: self)}))
+            self.present(alert2, animated: true)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,7 +130,24 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
         {
             let EOVC = segue.destination as! EditOnderhoudViewController
             EOVC.backup_onderhoud = selected_onderhoud
+            EOVC.date2 = date
         }
+        else if segue.identifier == "addSegue"
+        {
+            let NOVC = segue.destination as! NAViewController
+            NOVC.date = date
+            NOVC.overzicht = 1
+            NOVC.nieuw = nieuw
+        }
+        else if segue.identifier == "addKlantSegue"
+        {
+            let DVC = segue.destination as! DetailViewController
+            DVC.nieuw = 1
+        }
+    }
+    
+    @IBAction func unwindToOverzich(segue: UIStoryboardSegue)
+    {
     }
 
 }

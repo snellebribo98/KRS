@@ -1542,7 +1542,7 @@
                                     <navigationItem title="Title" id="GzH-k7-S7l">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="msO-lP-ruD">
                                             <connections>
-                                                <segue destination="RUm-Xu-psC" kind="unwind" unwindAction="unwindToCalendarViewWithSegue:" id="jmd-5n-ZC9"/>
+                                                <action selector="back:" destination="YNX-9I-gpR" id="o8G-YG-Kkv"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="qCb-4K-bee">
@@ -1869,6 +1869,9 @@
                         <outlet property="searchViewOutlet" destination="eve-q4-qdj" id="zcC-mO-kxI"/>
                         <outlet property="werkzaamheden" destination="bKV-2x-JlL" id="Lcb-O3-Mbp"/>
                         <segue destination="0Bm-QH-IhA" kind="presentation" identifier="GoBackSegue" id="XDx-0c-Nzb"/>
+                        <segue destination="RUm-Xu-psC" kind="unwind" identifier="unwindToCalendarSegue" unwindAction="unwindToCalendarViewWithSegue:" id="IXh-PC-fd5"/>
+                        <segue destination="RUm-Xu-psC" kind="unwind" identifier="unwindToOverzichtSegue" unwindAction="unwindToOverzichWithSegue:" id="7tp-XW-5DZ"/>
+                        <segue destination="tC5-Ix-9Ef" kind="presentation" identifier="goBackToOverzicht" id="2cz-3A-0LI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NuY-mi-bRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1894,7 +1897,11 @@
                                                 <segue destination="A5w-1S-3tk" kind="unwind" unwindAction="unwindToCalendarViewWithSegue:" id="62x-ku-Ebd"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4uB-fB-WNS"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="4uB-fB-WNS">
+                                            <connections>
+                                                <action selector="addOnderhoud:" destination="tC5-Ix-9Ef" id="btT-8c-A9L"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -2003,8 +2010,9 @@
                     <connections>
                         <outlet property="bar" destination="hAu-91-I2Q" id="Wdk-yc-yfP"/>
                         <outlet property="overzichtTableView" destination="zg9-0D-Gjv" id="k61-UR-453"/>
-                        <segue destination="YNX-9I-gpR" kind="presentation" id="vZR-EZ-naN"/>
+                        <segue destination="YNX-9I-gpR" kind="presentation" identifier="addSegue" id="vZR-EZ-naN"/>
                         <segue destination="gts-4y-ivZ" kind="presentation" identifier="editSegue" id="sAh-dR-vb3"/>
+                        <segue destination="fNo-ii-CLK" kind="presentation" identifier="addKlantSegue" id="y4D-gI-vSP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6N1-e2-ofC" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2106,7 +2114,7 @@
                                                 <action selector="editandcancelfunction:" destination="gts-4y-ivZ" id="gdZ-5L-xPc"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="RNH-g3-aOs">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="RNH-g3-aOs">
                                             <connections>
                                                 <action selector="doneandsavefunction:" destination="gts-4y-ivZ" id="9ji-c3-Avo"/>
                                             </connections>
@@ -2182,9 +2190,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="U4u-9E-Ejo"/>
+        <segue reference="2cz-3A-0LI"/>
         <segue reference="vZR-EZ-naN"/>
-        <segue reference="GQZ-CU-lzi"/>
+        <segue reference="y4D-gI-vSP"/>
         <segue reference="XDx-0c-Nzb"/>
     </inferredMetricsTieBreakers>
 </document>

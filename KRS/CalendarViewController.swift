@@ -108,6 +108,7 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     @IBAction func todayMonthView()
     {
+        start = 1
         calendarView.toggleCurrentDayView()
     }
     
@@ -133,11 +134,13 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     @IBAction func nextView()
     {
+        start = 1
         calendarView.loadNextView()
     }
 
     @IBAction func previousView()
     {
+        start = 1
         calendarView.loadPreviousView()
     }
     
@@ -224,10 +227,12 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         else if segue.identifier == "nieuweKlantSegue"
         {
             let DVC = segue.destination as! DetailViewController
+            DVC.nieuw = 1
         }
     }
     
     @IBAction func unwindToCalendarView(segue: UIStoryboardSegue) {
-        
+        fetchAfspraken()
+        calendarView.contentController.refreshPresentedMonth()
     }
 }

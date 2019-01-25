@@ -10,8 +10,7 @@ import UIKit
 
 class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
-    
+    var overzicht: Int?
     var date: Date?
     var nieuw: Int?
     
@@ -376,6 +375,33 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     func nee()
     {
-        performSegue(withIdentifier: "GoBackSegue", sender: self)
+        if overzicht == 1
+        {
+            performSegue(withIdentifier: "goBackToOverzicht", sender: self)
+        }
+        else
+        {
+            performSegue(withIdentifier: "GoBackSegue", sender: self)
+        }
+        
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        if overzicht == 1
+        {
+            performSegue(withIdentifier: "unwindToOverzichtSegue", sender: self)
+        }
+        else
+        {
+            performSegue(withIdentifier: "unwindToCalendarSegue", sender: self)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goBackToOverzicht"
+        {
+            let OVC = segue.destination as! AfsprakenOverzichtViewController
+            OVC.date = date
+        }
     }
 }
