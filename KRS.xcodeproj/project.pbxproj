@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		435F647AF3070636225804B7 /* Pods_KRS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BF98901461C8423E6CA50 /* Pods_KRS.framework */; };
 		A913D77721CFC9DB00EE902D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A913D77621CFC9DB00EE902D /* AppDelegate.swift */; };
-		A913D77921CFC9DB00EE902D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A913D77821CFC9DB00EE902D /* ViewController.swift */; };
 		A913D77C21CFC9DB00EE902D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A913D77A21CFC9DB00EE902D /* Main.storyboard */; };
 		A913D77E21CFC9DD00EE902D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A913D77D21CFC9DD00EE902D /* Assets.xcassets */; };
 		A913D78121CFC9DD00EE902D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A913D77F21CFC9DD00EE902D /* LaunchScreen.storyboard */; };
@@ -39,30 +38,29 @@
 		905B11C9CEE76A5D40ECDA4E /* Pods-KRS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.release.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.release.xcconfig"; sourceTree = "<group>"; };
 		A913D77321CFC9DB00EE902D /* KRS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KRS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A913D77621CFC9DB00EE902D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A913D77821CFC9DB00EE902D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A913D77B21CFC9DB00EE902D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A913D77D21CFC9DD00EE902D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A913D78021CFC9DD00EE902D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A913D78221CFC9DD00EE902D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A913D78821CFEDCA00EE902D /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
-		A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoekKlantViewController.swift; sourceTree = "<group>"; };
-		A913D78E21D01FFA00EE902D /* dataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataCell.swift; sourceTree = "<group>"; };
-		A913D79021D0391A00EE902D /* klant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = klant.swift; sourceTree = "<group>"; };
-		A913D79221D1272900EE902D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		A91B4C3121D3A8F100CE99C8 /* fetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fetchData.swift; sourceTree = "<group>"; };
-		A91B4C3521D7CEDA00CE99C8 /* updateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = updateData.swift; sourceTree = "<group>"; };
-		A91B4C3721D7CEE400CE99C8 /* createData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createData.swift; sourceTree = "<group>"; };
-		A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoekToestelViewController.swift; sourceTree = "<group>"; };
-		A928B9AB21ECBC0900C5A7F3 /* ohViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ohViewController.swift; sourceTree = "<group>"; };
-		A9AA19FF21D15401004C33B6 /* klantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = klantViewController.swift; sourceTree = "<group>"; };
-		A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toestelViewController.swift; sourceTree = "<group>"; };
-		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notitiesViewController.swift; sourceTree = "<group>"; };
-		A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudViewController.swift; sourceTree = "<group>"; };
-		A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
-		A9CF2F1C21F752AC008803C4 /* NAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NAViewController.swift; sourceTree = "<group>"; };
-		A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfsprakenOverzichtViewController.swift; sourceTree = "<group>"; };
-		A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudCell.swift; sourceTree = "<group>"; };
-		A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOnderhoudViewController.swift; sourceTree = "<group>"; };
+		A913D78821CFEDCA00EE902D /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DesignableView.swift; path = "Ondersteunende files/DesignableView.swift"; sourceTree = "<group>"; };
+		A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoekKlantViewController.swift; path = ZoekKlant/ZoekKlantViewController.swift; sourceTree = "<group>"; };
+		A913D78E21D01FFA00EE902D /* dataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = dataCell.swift; path = "Cell Files/dataCell.swift"; sourceTree = "<group>"; };
+		A913D79021D0391A00EE902D /* klant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = klant.swift; path = Structs/klant.swift; sourceTree = "<group>"; };
+		A913D79221D1272900EE902D /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailViewController.swift; path = DetailVC/DetailViewController.swift; sourceTree = "<group>"; };
+		A91B4C3121D3A8F100CE99C8 /* fetchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = fetchData.swift; path = Data/fetchData.swift; sourceTree = "<group>"; };
+		A91B4C3521D7CEDA00CE99C8 /* updateData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = updateData.swift; path = Data/updateData.swift; sourceTree = "<group>"; };
+		A91B4C3721D7CEE400CE99C8 /* createData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = createData.swift; path = Data/createData.swift; sourceTree = "<group>"; };
+		A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ZoekToestelViewController.swift; path = ZoekToestel/ZoekToestelViewController.swift; sourceTree = "<group>"; };
+		A928B9AB21ECBC0900C5A7F3 /* ohViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ohViewController.swift; path = DetailVC/ohViewController.swift; sourceTree = "<group>"; };
+		A9AA19FF21D15401004C33B6 /* klantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = klantViewController.swift; path = DetailVC/klantViewController.swift; sourceTree = "<group>"; };
+		A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = toestelViewController.swift; path = DetailVC/toestelViewController.swift; sourceTree = "<group>"; };
+		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = notitiesViewController.swift; path = DetailVC/notitiesViewController.swift; sourceTree = "<group>"; };
+		A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = onderhoudViewController.swift; path = "niet meer nodig/onderhoudViewController.swift"; sourceTree = "<group>"; };
+		A9CF2F1A21F5F626008803C4 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarViewController.swift; path = Calendar/CalendarViewController.swift; sourceTree = "<group>"; };
+		A9CF2F1C21F752AC008803C4 /* NAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NAViewController.swift; path = Calendar/NAViewController.swift; sourceTree = "<group>"; };
+		A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AfsprakenOverzichtViewController.swift; path = Calendar/AfsprakenOverzichtViewController.swift; sourceTree = "<group>"; };
+		A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = onderhoudCell.swift; path = "Cell Files/onderhoudCell.swift"; sourceTree = "<group>"; };
+		A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EditOnderhoudViewController.swift; path = Calendar/EditOnderhoudViewController.swift; sourceTree = "<group>"; };
 		AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -100,7 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				A913D77621CFC9DB00EE902D /* AppDelegate.swift */,
-				A913D77821CFC9DB00EE902D /* ViewController.swift */,
 				A913D78A21CFFDDD00EE902D /* ZoekKlantViewController.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
 				A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */,
@@ -269,7 +266,6 @@
 				A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */,
 				A9CF2F1B21F5F626008803C4 /* CalendarViewController.swift in Sources */,
 				A91B4C3221D3A8F100CE99C8 /* fetchData.swift in Sources */,
-				A913D77921CFC9DB00EE902D /* ViewController.swift in Sources */,
 				A913D77721CFC9DB00EE902D /* AppDelegate.swift in Sources */,
 				A913D79121D0391A00EE902D /* klant.swift in Sources */,
 				A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */,
