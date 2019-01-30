@@ -11,7 +11,8 @@ Ook kan de gebruiker een kalender bekijken en dagen selecteren om te zien welk o
 
 ### Informatie
 Naam: Wessel Mel
-Copyright Statement: Dit werk mag gebruikt worden mits er een vermelding wordt gedaan naar deze pagina.
+
+**Copyright Statement**: Dit werk mag gebruikt worden mits er een vermelding wordt gedaan naar deze pagina.
 
 ### Gebruikte sources
 CVCalendar: https://github.com/CVCalendar/CVCalendar
