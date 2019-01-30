@@ -10,6 +10,7 @@ import UIKit
 
 class ZoekToestelViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    // outlets
     @IBOutlet weak var merkOutlet: UITextField!
     @IBOutlet weak var typeOutlet: UITextField!
     @IBOutlet weak var serienrOutlet: UITextField!
@@ -17,6 +18,7 @@ class ZoekToestelViewController: UIViewController, UITableViewDelegate, UITableV
     @IBOutlet weak var nieuwKlantButton: UIButton!
     @IBOutlet weak var toestelTableView: UITableView!
     
+    //needed data
     var filtered = 0
     var klantgegevens = [Klant3]()
     var klantgegevens2 = [Klant3?]()
@@ -40,16 +42,16 @@ class ZoekToestelViewController: UIViewController, UITableViewDelegate, UITableV
     
     func fetchToestellen()
     {
+        // fetch needed data
         let fetch = fetchDatas()
         testklantgegevens = fetch.klantData()
         testonderhoudgegevens = fetch.onderhoudData()
         testtoestelgegevens = fetch.toestelData()
+        
         klantamount = testklantgegevens?.count
-        print(testklantgegevens!)
         onderhoudamount = testonderhoudgegevens?.count
-        print(testonderhoudgegevens!)
         toestelamount = testtoestelgegevens?.count
-        print(testtoestelgegevens!)
+        
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd-MM-yyyy"
         var stoppen = 0
@@ -254,9 +256,11 @@ class ZoekToestelViewController: UIViewController, UITableViewDelegate, UITableV
         }
         else if segue.identifier == "nieuwSegue" {
             let DVC = segue.destination as! DetailViewController
+            let nieuwedata = Klant3(naam: "", debnr: "", tel: "", mobiel: "", mail: "", straat: "", nr: "", postcode: "", woonplaats: "", notities: "", klant_id: String(klantamount!), toestellen: [toestel3](), onderhouden: [onderhoud3]())
             DVC.klantamount = klantamount
             DVC.toestelamount = toestelamount
             DVC.onderhoudamount = onderhoudamount
+            DVC.data = nieuwedata
             DVC.nieuw = 1
         }
     }

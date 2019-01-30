@@ -10,32 +10,22 @@ import UIKit
 
 class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    // variables
     var nieuw: Int?
     var data: Klant3?
     var backupdata: Klant3?
     let dateFormat = DateFormatter()
     let monteurs = ["Albert Mel", "Mike Visser", "Bart Dekker"]
-    var needed_toestel_id = "0"
-    
-    // De benodigde onderhoudgegevens van een toestel
+    var needed_toestel_id: String?
     var needed_data = [onderhoud3]()
-    
     var klantamount: Int?
     var toestelamount: Int?
     var onderhoudamount: Int?
     var backuponderhoudamount: Int?
-    
-    // Nieuw Onderhoud Aanwezig, standaard: 0
     var noa: Int?
-    
     var selectedRow: Int = 0
     var edit_on: Int = 0
-    
     var addonderhoud = 0
-    var noo: Int?
-    var ipTest: IndexPath?
-    var onderhoud_id_test: String?
-    
     
     // outlets
     @IBOutlet weak var onderhoudTableView: DesignableTableView!
@@ -75,9 +65,11 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         NotificationCenter.default.addObserver(self, selector: #selector(onderhoudViewController.save), name:
             edited3, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onderhoudViewController.datafunc), name: neededData, object: nil)
-//        print("TEST")
-//        print(data?.onderhouden[0].toestel_id)
         
+        if data?.onderhouden.count != 0 && nieuw != 1
+        {
+            get_needed_data(toestel_id: ((data?.onderhouden[0].toestel_id)!))
+        }
         
         if nieuw == 1
         {
@@ -95,16 +87,23 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // Do any additional setup after loading the view.
     }
     
-    // tableview dingen
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if needed_data.count != 0
+        if nieuw != 1 || data?.onderhouden.count != 0
         {
-            return needed_data.count
+            if needed_data.count != 0
+            {
+                return needed_data.count
+            }
+            else
+            {
+                return 1
+            }
         }
         else
         {
             return 1
         }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -112,9 +111,6 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         noa = 0
         if needed_data.count != 0
         {
-            print("HIER")
-            // create cell label
-            // date style info
             dateFormat.dateStyle = .short
             let date = needed_data[indexPath.row].onderhoudsdatum
             let werkzaamheden = needed_data[indexPath.row].werkzaamheden
@@ -134,17 +130,32 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // update data
-        updata(nr: 3, row: selectedRow)
+        if needed_data.count != 0
+        {
+            updata(nr: 3, row: selectedRow)
+        }
+        
         selectedRow = indexPath.row
-        // update vensters
         if nieuw == 1
         {
-            newKlant()
+            if needed_data.count != 0
+            {
+                updateOverview(index: selectedRow)
+            }
+            else
+            {
+                newKlant()
+            }
         }
         else if noa == 1
         {
-            emptyKlant()
+            if edit_on == 1{
+                newKlant()
+            }
+            else
+            {
+                emptyKlant()
+            }
         }
         else
         {
@@ -153,7 +164,6 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    // pickerview dingen
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -170,14 +180,11 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         monteurLabel?.text = monteurs[row]
     }
     
+    // update the data locally
     func updata(nr: Int, row: Int)
     {
         if nr == 1
         {
-            // update only needed_data
-            // datum
-//            print(needed_data)
-//            print(row)
             if needed_data[row].onderhoudsdatum != onderhoudsdatum.date
             {
                needed_data[row].onderhoudsdatum = onderhoudsdatum.date
@@ -200,7 +207,6 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else if nr == 2
         {
-            // update only full_data
             var chosendatarow: Int?
             for index in 0..<(data?.onderhouden.count)!
             {
@@ -214,7 +220,6 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             {
                 
             }
-            // datum
             if data?.onderhouden[chosendatarow!].onderhoudsdatum != onderhoudsdatum.date
             {
                 data?.onderhouden[chosendatarow!].onderhoudsdatum = onderhoudsdatum.date
@@ -256,6 +261,8 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         werkzaamheden.isEditable = true
         Opmerkingen.isSelectable = true
         Opmerkingen.isEditable = true
+        
+        edit_on = 1
     }
     
     func emptyKlant()
@@ -276,6 +283,7 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         Opmerkingen.isEditable = false
     }
     
+    // update the data displayed
     func updateOverview(index: Int?)
     {
         if edit_on == 0
@@ -351,6 +359,7 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         
     }
     
+    // get the needed data from a toestel
     func get_needed_data(toestel_id: String)
     {
         needed_data.removeAll()
@@ -365,21 +374,24 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
     }
     
-    // IBAction
+    // add onderhoud
     @IBAction func addOnderhoud(_ sender: Any)
     {
-        print(noa)
+        if needed_toestel_id == nil
+        {
+            toestelamount! += 1
+            needed_toestel_id = String(toestelamount!)
+        }
         if noa == 1
         {
-            print("noa")
             if werkzaamheden?.text == ""
             {
-                // NOTIFIcATIE TOEVOEGEN
-                print("VUL IN")
+                let alert = UIAlertController(title: "Vul in", message: "Vul werkzaamheden in!", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+                self.present(alert, animated: true)
             }
             else
             {
-                
                 if monteurLabel.text == "Onbekend"
                 {
                     monteurLabel.text = monteurs[0]
@@ -411,8 +423,8 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 monteurLabel.text = monteurs[0]
             }
             onderhoudamount! += 1
-            var id = String(onderhoudamount! - 1)
-            var newRow = onderhoud3(klant_id: data?.klant_id ?? "", toestel_id: needed_toestel_id ?? "", onderhoudsdatum: Date(), monteur: monteurs[0], werkzaamheden: "", opmerkingen: "", onderhoud_id: id)
+            let id = String(onderhoudamount! - 1)
+            let newRow = onderhoud3(klant_id: data?.klant_id ?? "", toestel_id: needed_toestel_id ?? "", onderhoudsdatum: Date(), monteur: monteurs[0], werkzaamheden: "", opmerkingen: "", onderhoud_id: id)
             data?.onderhouden.append(newRow)
             needed_data.append(newRow)
             updata(nr: 3, row: onderhoudTableView.indexPathForSelectedRow!.row)
@@ -426,12 +438,9 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else
         {
-            print("NOA0")
             updata(nr: 3, row: selectedRow)
             onderhoudamount! += 1
             let id = String(onderhoudamount! - 1)
-            
-            print(id)
             let newRow = onderhoud3(klant_id: data?.klant_id ?? "", toestel_id: needed_toestel_id ?? "", onderhoudsdatum: Date(), monteur: monteurs[0], werkzaamheden: "", opmerkingen: "", onderhoud_id: id)
             data?.onderhouden.append(newRow)
             needed_data.append(newRow)
@@ -440,9 +449,7 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
             onderhoudTableView.selectRow(at: IndexPath(row: endIndex, section: 0), animated: true, scrollPosition: .bottom)
             selectedRow = endIndex
             updateOverview(index: endIndex)
-            noa = 1
-            print("NOAEIND")
-            print(noa)
+            noa = 2
         }
     }
     
@@ -493,8 +500,11 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         Opmerkingen.isEditable = false
         data = backupdata
         onderhoudamount = backuponderhoudamount
-        get_needed_data(toestel_id: (data?.onderhouden[0].toestel_id)!)
-        print(needed_data)
+        if data?.onderhouden.count != 0
+        {
+            get_needed_data(toestel_id: (data?.onderhouden[0].toestel_id)!)
+        }
+        
         onderhoudTableView.reloadData()
         onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
         selectedRow = 0
@@ -515,28 +525,36 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     @objc func save()
     {
         edit_on = 0
-        // updata data
         if werkzaamheden?.text != ""
         {
-            updata(nr: 3, row: selectedRow)
+            if data?.onderhouden.count == 0
+            {
+                if monteurLabel.text == "Onbekend"
+                {
+                    monteurLabel.text = monteurs[0]
+                }
+                onderhoudamount! += 1
+                let id = String(onderhoudamount! - 1)
+                let newRow = onderhoud3(klant_id: data?.klant_id ?? "", toestel_id: needed_toestel_id ?? "", onderhoudsdatum: Date(), monteur: monteurs[0], werkzaamheden: "", opmerkingen: "", onderhoud_id: id)
+                data?.onderhouden.append(newRow)
+                needed_data.append(newRow)
+                updata(nr: 3, row: onderhoudTableView.indexPathForSelectedRow!.row)
+            }
+            else
+            {
+                updata(nr: 3, row: selectedRow)
+            }
+            
         }
         
         backupdata = data
-        print(data?.onderhouden)
-        // create new onderhoud
+        
         let verschil = onderhoudamount! - backuponderhoudamount!
         if verschil != 0
         {
-            print(data?.onderhouden)
-            print(backuponderhoudamount)
-            print(data?.onderhouden[4])
-            print(data?.onderhouden)
-            print(verschil)
             for i in 1...verschil
             {
-                print(onderhoudamount)
                 let ni = (data?.onderhouden.count)! - i
-                print(data?.onderhouden.count)
                 if data?.onderhouden[ni].werkzaamheden != ""
                 {
                     let create = createData()
@@ -556,12 +574,12 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 }
             }
         }
+        backuponderhoudamount = onderhoudamount
+        nieuw = 0
         
         // update onderhoud
         if nieuw != 1 && data?.onderhouden.count != 0
         {
-//            print("DATA123")
-//            print(data?.onderhouden)
             for current_onderhoud in (data?.onderhouden)!
             {
                 var datum: String?
@@ -578,6 +596,7 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         // update table and view
         onderhoudTableView.reloadData()
         onderhoudTableView.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
+        selectedRow = 0
         if nieuw == 1
         {
             newKlant()
@@ -595,10 +614,26 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     @objc func datafunc(notification: Notification)
     {
-        print("DATAFUNC")
-        print(needed_data)
-        if needed_data.count != 0 {
-            updata(nr: 3, row: selectedRow)
+        if werkzaamheden?.text != ""
+        {
+            if needed_data.count == 0
+            {
+                needed_toestel_id = notification.userInfo!["Toestel"] as? String
+                if monteurLabel.text == "Onbekend"
+                {
+                    monteurLabel.text = monteurs[0]
+                }
+                onderhoudamount! += 1
+                let id = String(onderhoudamount! - 1)
+                let newRow = onderhoud3(klant_id: data?.klant_id ?? "", toestel_id: needed_toestel_id ?? "", onderhoudsdatum: Date(), monteur: monteurs[0], werkzaamheden: "", opmerkingen: "", onderhoud_id: id)
+                data?.onderhouden.append(newRow)
+                needed_data.append(newRow)
+                updata(nr: 3, row: onderhoudTableView.indexPathForSelectedRow!.row)
+            }
+            else
+            {
+                updata(nr: 3, row: selectedRow)
+            }
         }
         
         // set selectedrow
@@ -608,12 +643,10 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         needed_data.removeAll()
         
         // call the current toestel_id
-        needed_toestel_id = notification.userInfo!["Toestel"] as! String
+        needed_toestel_id = notification.userInfo!["Toestel"] as? String
         
         // fill needed_data
-        get_needed_data(toestel_id: needed_toestel_id)
-        
-//        print(needed_data)
+        get_needed_data(toestel_id: needed_toestel_id!)
         
         // update the tableview and overview
         onderhoudTableView.reloadData()
@@ -624,7 +657,15 @@ class ohViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         }
         else if needed_data.count == 0
         {
-            emptyKlant()
+            if edit_on == 1
+            {
+                newKlant()
+            }
+            else
+            {
+                emptyKlant()
+            }
+            
         }
         else
         {

@@ -8,6 +8,7 @@
 
 import UIKit
 
+// Designable views gives the ability to add borders and corners to items
 @IBDesignable
 class DesignableView: UIView {
 }

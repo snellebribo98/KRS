@@ -52,8 +52,6 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(date)
-        print(nieuw)
         
         fetchIets()
         
@@ -61,6 +59,10 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         klantDataTable.dataSource = self
         monteurPicker.delegate = self
         monteurPicker.dataSource = self
+        
+        datumPicker.date = Date()
+        datumPicker.locale = Locale(identifier: "nl_NL")
+        datumPicker.datePickerMode = .date
         
         werkzaamheden.text = ""
         Opmerkingen.text = ""
@@ -73,7 +75,6 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         {
             inputView()
         }
-        // Do any additional setup after loading the view.
     }
     
     func searchView()
@@ -157,7 +158,7 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if filteredklantgegevens.count != 0
         {
-            return filteredklantgegevens.count
+            return filteredklantgegevens.count + 1
         }
         else
         {
@@ -213,7 +214,6 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         let alert = UIAlertController(title: "Bericht", message: "Kies een toestel", preferredStyle: .alert)
         if filteredklantgegevens[indexPath.row - 1].toestellen.count > 1
         {
-            print(filteredklantgegevens[indexPath.row - 1])
             for toestel in filteredklantgegevens[indexPath.row - 1].toestellen
             {
                 let naam = "\(toestel.merk) \(toestel.type)"
@@ -283,18 +283,14 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
                 var overeen = 0
                 if searchInputField.text!.isEmpty == false {
                     totaal += 1
-                    // alternative: not case sensitive
                     if data.naam.lowercased().range(of:searchInputField.text!.lowercased()) != nil {
                         overeen += 1
                     }
                 }
-                print(totaal)
-                print(overeen)
                 if totaal == overeen {
                     filteredklantgegevens.append(data)
                 }
             }
-            print(filteredklantgegevens)
             klantDataTable.reloadData()
         }
     }
@@ -326,14 +322,11 @@ class NAViewController: UIViewController, UITableViewDelegate, UITableViewDataSo
         onderhoudsdatum = datumPicker.date
         onderhoud_id = String(Int(onderhoudamount!))
         onderhoudamount! += 1
-        print(klant_id)
-        print(toestel_id)
-        print(onderhoudsdatum)
-        print(monteur)
-        print(werkzaamheden1)
-        print(opmerkingen)
-        print(onderhoud_id)
-        print(onderhoudamount)
+        if nieuw == 1
+        {
+            klant_id = "1000000000"
+            toestel_id = "1000000000"
+        }
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd-MM-yyyy"
         var datum = dateFormatterGet.string(from: onderhoudsdatum) as String?

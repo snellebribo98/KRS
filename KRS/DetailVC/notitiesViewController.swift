@@ -10,6 +10,7 @@ import UIKit
 
 class notitiesViewController: UIViewController {
     
+    // needed variables
     var nieuw: Int?
     var data: Klant3?
     public var test = 1
@@ -17,12 +18,12 @@ class notitiesViewController: UIViewController {
     var toestelamount: Int?
     var onderhoudamount: Int?
     
+    // outlet
     @IBOutlet weak var notities: DesignableTextView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         test = 0
-        print(test)
         if nieuw == 1 {
             newKlant()
         } else if data != nil {
@@ -67,7 +68,7 @@ class notitiesViewController: UIViewController {
         notities?.isEditable = false
         notities?.isSelectable = false
         let notitie = Notification.Name("Note")
-        NotificationCenter.default.post(name: notitie, object: nil, userInfo: ["test": notities?.text])
+        NotificationCenter.default.post(name: notitie, object: nil, userInfo: ["test": notities?.text as Any])
     }
 
 }

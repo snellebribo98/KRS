@@ -43,17 +43,15 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HIER")
         fetchAfspraken()
         if let currentCalendar = currentCalendar {
             datumLabel.text = CVDate(date: Date(), calendar: currentCalendar).globalDescription
         }
         calendarView.backgroundColor = .white
+        menuView.backgroundColor = .white
         
         calendarView.delegate = self
         menuView.delegate = self
-        
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidLayoutSubviews() {
@@ -228,6 +226,18 @@ class CalendarViewController: UIViewController, CVCalendarViewDelegate, CVCalend
         {
             let DVC = segue.destination as! DetailViewController
             DVC.nieuw = 1
+            let fetch = fetchDatas()
+            let testklantgegevens = fetch.klantData()
+            let testonderhoudgegevens = fetch.onderhoudData()
+            let testtoestelgegevens = fetch.toestelData()
+            let klantamount = testklantgegevens?.count
+            let onderhoudamount = testonderhoudgegevens?.count
+            let toestelamount = testtoestelgegevens?.count
+            let nieuwedata = Klant3(naam: "", debnr: "", tel: "", mobiel: "", mail: "", straat: "", nr: "", postcode: "", woonplaats: "", notities: "", klant_id: String(klantamount!), toestellen: [toestel3](), onderhouden: [onderhoud3]())
+            DVC.klantamount = klantamount
+            DVC.toestelamount = toestelamount
+            DVC.onderhoudamount = onderhoudamount
+            DVC.data = nieuwedata
         }
     }
     

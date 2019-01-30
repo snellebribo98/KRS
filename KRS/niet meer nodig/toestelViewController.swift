@@ -50,11 +50,11 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
         toestelDataTable.selectRow(at: IndexPath(row: 0, section: 0), animated: true, scrollPosition: .top)
         
         let neededData = Notification.Name("Data")
-        print(toestelDataTable.indexPathForSelectedRow!.row)
+//        print(toestelDataTable.indexPathForSelectedRow!.row)
         if data?.toestellen.count != 0 {
-            print("NOTIFICATION")
-            NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
-            print(data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id)
+//            print("NOTIFICATION")
+            NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id as Any])
+//            print(data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id)
         }
         
         if nieuw == 1 {
@@ -62,8 +62,8 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             addToestel.isHidden = false
         } else if data != nil {
             existingKlant()
-            print("TOESTELLEN")
-            print(data?.toestellen)
+//            print("TOESTELLEN")
+//            print(data?.toestellen)
             addToestel.isHidden = true
         }
         let edited = Notification.Name("edit")
@@ -98,17 +98,7 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
                     plaatsingdatum.date = date!
                 }
             }
-//            else {
-//                let date = data?.toestellen[0].datum
-//                if date != nil {
-//                    plaatingDatumLabel?.text = dateFormat.string(from: date!)
-//                    plaatsingdatum.date = date!
-//                }
-//            }
         }
-        
-        
-        
     }
     
     @objc func editOff() {
@@ -144,18 +134,18 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             serienr?.text = data?.toestellen[0].serienr
         }
         let neededData = Notification.Name("Data")
-        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
+        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id as Any])
     }
     
     @objc func save() {
         if addtoestel > 0 {
-            print("Toestellen")
-            print(addtoestel)
-            print(data?.toestellen)
+//            print("Toestellen")
+//            print(addtoestel)
+//            print(data?.toestellen)
             for i in 1...addtoestel {
                 let endIndex = (data?.toestellen.count)! - i
-                print("toestel")
-                print(data?.toestellen[endIndex])
+//                print("toestel")
+//                print(data?.toestellen[endIndex])
                 if data?.toestellen[endIndex].merk != ""
                 {
                     let create = createData()
@@ -216,10 +206,10 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
         plaatingDatumLabel?.text = dateFormat.string(from: date!)
         plaatsingdatum?.date = date!
         serienr?.text = data?.toestellen[0].serienr
-        print("DATA1")
+//        print("DATA1")
         let neededData = Notification.Name("Data")
-        print("DATA1")
-        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": nedid])
+//        print("DATA1")
+        NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": nedid as Any])
     }
     
     func updatetoestel(index: Int) {
@@ -258,9 +248,9 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             data?.toestellen[indexPath.row].serienr = serienr?.text ?? ""
         }
         let date = data?.toestellen[indexPath.row].datum
-        print(date)
+//        print(date)
         let date2 = plaatsingdatum?.date
-        print(date2)
+//        print(date2)
         if date != nil {
             if date != date2 {
                 data?.toestellen[indexPath.row].datum = date2!
@@ -333,18 +323,19 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             return cell
         } else {
             cell.textLabel?.text = "Nieuw Toestel"
+//            print("HIERTOESTEL")
             nt = 1
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print("test")
+//        print("test")
         updata(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("TES")
+//        print("TES")
         if data?.toestellen.count != 0 {
             merk?.text = data?.toestellen[indexPath.row].merk
             type?.text = data?.toestellen[indexPath.row].type
@@ -353,15 +344,15 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
             garantie?.text = data?.toestellen[indexPath.row].garantie
             ogp?.text = data?.toestellen[indexPath.row].OGP
             let date = data?.toestellen[indexPath.row].datum
-            print(date)
+//            print(date)
             if date != nil {
                 plaatingDatumLabel?.text = dateFormat.string(from: date!)
                 plaatsingdatum.date = date!
             }
             serienr?.text = data?.toestellen[indexPath.row].serienr
             let neededData = Notification.Name("Data")
-            print("DATA")
-            NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id])
+//            print("DATA")
+            NotificationCenter.default.post(name: neededData, object: nil, userInfo: ["Toestel": data?.toestellen[toestelDataTable.indexPathForSelectedRow!.row].toestel_id as Any])
             
         }
         
@@ -378,7 +369,7 @@ class toestelViewController: UIViewController, UITableViewDelegate, UITableViewD
         if nt == 1 {
             if type?.text == ""
             {
-                print("VUL info in")
+//                print("VUL info in")
             }
             else
             {

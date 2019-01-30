@@ -12,12 +12,13 @@ import UIKit
 
 class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    
+    // outlets
     @IBOutlet weak var klantDataTable: UITableView!
     @IBOutlet weak var naamTextField: UITextField!
     @IBOutlet weak var straatTextField: UITextField!
     @IBOutlet weak var woonplaatsTextField: UITextField!
     
+    // needed variables
     var filtered = 0
     var klantgegevens = [Klant3]()
     var klantgegevens2 = [Klant3?]()
@@ -33,26 +34,28 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        createData()
+        // fetch all the data from the site
         fetchIets()
+        
         klantDataTable.delegate = self
         klantDataTable.dataSource = self
         // Do any additional setup after loading the view.
     }
     
     func fetchIets() {
+        // fetch all the data
         let fetch = fetchDatas()
         testklantgegevens = fetch.klantData()
         testonderhoudgegevens = fetch.onderhoudData()
         testtoestelgegevens = fetch.toestelData()
+        
         klantamount = testklantgegevens?.count
-        print(testklantgegevens!)
         onderhoudamount = testonderhoudgegevens?.count
-        print(testonderhoudgegevens!)
         toestelamount = testtoestelgegevens?.count
-        print(testtoestelgegevens!)
         let dateFormatterGet = DateFormatter()
         dateFormatterGet.dateFormat = "dd-MM-yyyy"
+        
+        // convert all the data into usable sorted data
         var stoppen = 0
         while stoppen != 1 {
             if testklantgegevens != nil && testonderhoudgegevens != nil && testtoestelgegevens != nil {
@@ -107,14 +110,8 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         klantamount = klantgegevens.count
     }
     
-//    func createData() {
-//        let dateFormatterGet = DateFormatter()
-//        dateFormatterGet.dateFormat = "dd-MM-yyyy"
-//
-//    }
-    
+    // check if the data is filtered through search and return the output
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         if filtered == 0 {
             return klantgegevens.count + 1
         } else {
@@ -123,8 +120,8 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         
     }
     
+    // assign the values to the cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        print("HIRE")
         if indexPath.row == 0 {
             let cell = klantDataTable.dequeueReusableCell(withIdentifier: "TopCell", for: indexPath)
             return cell
@@ -192,6 +189,7 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         }
     }
     
+    // search function
     @IBAction func zoeken(_ sender: Any) {
         if naamTextField.text!.isEmpty && straatTextField.text!.isEmpty &&
             woonplaatsTextField.text!.isEmpty {
@@ -199,9 +197,7 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
             filteredklantgegevens.removeAll()
             klantDataTable.reloadData()
             let alert = UIAlertController(title: "Error", message: "Voer een naam, straat en/of woonplaats in!", preferredStyle: .alert)
-            
             alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
-            
             self.present(alert, animated: true)
 
         } else {
@@ -225,19 +221,14 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
                 }
                 if woonplaatsTextField.text!.isEmpty == false {
                     totaal += 1
-                    print(woonplaatsTextField.text!)
-                    print(data.woonplaats)
                     if data.woonplaats.lowercased().range(of:woonplaatsTextField.text!.lowercased()) != nil {
                         overeen += 1
                     }
                 }
-                print(totaal)
-                print(overeen)
                 if totaal == overeen {
                     filteredklantgegevens.append(data)
                 }
             }
-            print(filteredklantgegevens)
             klantDataTable.reloadData()
         }
     }
@@ -258,9 +249,11 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         }
         else if segue.identifier == "nieuwSegue" {
             let DVC = segue.destination as! DetailViewController
+            let nieuwedata = Klant3(naam: "", debnr: "", tel: "", mobiel: "", mail: "", straat: "", nr: "", postcode: "", woonplaats: "", notities: "", klant_id: String(klantamount!), toestellen: [toestel3](), onderhouden: [onderhoud3]())
             DVC.klantamount = klantamount
             DVC.toestelamount = toestelamount
             DVC.onderhoudamount = onderhoudamount
+            DVC.data = nieuwedata
             DVC.nieuw = 1
         }
     }
@@ -282,8 +275,6 @@ class ZoekKlantViewController: UIViewController, UITableViewDelegate, UITableVie
         while klantgegevens.isEmpty {
             
         }
-        print("huidige klantgegevens")
-        print(klantgegevens)
         klantDataTable.reloadData()
     }
     

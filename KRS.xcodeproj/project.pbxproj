@@ -22,6 +22,7 @@
 		A91B4C3821D7CEE400CE99C8 /* createData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91B4C3721D7CEE400CE99C8 /* createData.swift */; };
 		A928B9AA21E8AF0D00C5A7F3 /* ZoekToestelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */; };
 		A928B9AC21ECBC0900C5A7F3 /* ohViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A928B9AB21ECBC0900C5A7F3 /* ohViewController.swift */; };
+		A96C6D7521FC94BF003E5D93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96C6D7421FC94BF003E5D93 /* ViewController.swift */; };
 		A9AA1A0021D15401004C33B6 /* klantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA19FF21D15401004C33B6 /* klantViewController.swift */; };
 		A9AA1A0221D1580D004C33B6 /* toestelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */; };
 		A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */; };
@@ -31,6 +32,7 @@
 		A9CF2F1F21F752C5008803C4 /* AfsprakenOverzichtViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */; };
 		A9CF2F2121F78B52008803C4 /* onderhoudCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */; };
 		A9CF2F2321F88552008803C4 /* EditOnderhoudViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */; };
+		A9CF2F2F21FB4D83008803C4 /* ToestelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9CF2F2E21FB4D83008803C4 /* ToestelVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,7 @@
 		A91B4C3721D7CEE400CE99C8 /* createData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createData.swift; sourceTree = "<group>"; };
 		A928B9A921E8AF0C00C5A7F3 /* ZoekToestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoekToestelViewController.swift; sourceTree = "<group>"; };
 		A928B9AB21ECBC0900C5A7F3 /* ohViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ohViewController.swift; sourceTree = "<group>"; };
+		A96C6D7421FC94BF003E5D93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		A9AA19FF21D15401004C33B6 /* klantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = klantViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = toestelViewController.swift; sourceTree = "<group>"; };
 		A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notitiesViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +64,7 @@
 		A9CF2F1E21F752C5008803C4 /* AfsprakenOverzichtViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfsprakenOverzichtViewController.swift; sourceTree = "<group>"; };
 		A9CF2F2021F78B52008803C4 /* onderhoudCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onderhoudCell.swift; sourceTree = "<group>"; };
 		A9CF2F2221F88552008803C4 /* EditOnderhoudViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOnderhoudViewController.swift; sourceTree = "<group>"; };
+		A9CF2F2E21FB4D83008803C4 /* ToestelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToestelVC.swift; sourceTree = "<group>"; };
 		AEC64B6B9BFBC635222E504C /* Pods-KRS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KRS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-KRS/Pods-KRS.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +112,7 @@
 				A9CF2F2521FB40CC008803C4 /* Calendar */,
 				A913D77621CFC9DB00EE902D /* AppDelegate.swift */,
 				A913D77A21CFC9DB00EE902D /* Main.storyboard */,
+				A96C6D7421FC94BF003E5D93 /* ViewController.swift */,
 				A913D77D21CFC9DD00EE902D /* Assets.xcassets */,
 				A913D77F21CFC9DD00EE902D /* LaunchScreen.storyboard */,
 				A913D78221CFC9DD00EE902D /* Info.plist */,
@@ -150,7 +155,7 @@
 			children = (
 				A9AA19FF21D15401004C33B6 /* klantViewController.swift */,
 				A913D79221D1272900EE902D /* DetailViewController.swift */,
-				A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */,
+				A9CF2F2E21FB4D83008803C4 /* ToestelVC.swift */,
 				A9AA1A0321D15819004C33B6 /* notitiesViewController.swift */,
 				A928B9AB21ECBC0900C5A7F3 /* ohViewController.swift */,
 			);
@@ -160,6 +165,7 @@
 		A9CF2F2921FB40E9008803C4 /* niet meer nodig */ = {
 			isa = PBXGroup;
 			children = (
+				A9AA1A0121D1580D004C33B6 /* toestelViewController.swift */,
 				A9AA1A0521D15825004C33B6 /* onderhoudViewController.swift */,
 			);
 			path = "niet meer nodig";
@@ -338,6 +344,7 @@
 				A9AA1A0421D15819004C33B6 /* notitiesViewController.swift in Sources */,
 				A9CF2F1B21F5F626008803C4 /* CalendarViewController.swift in Sources */,
 				A91B4C3221D3A8F100CE99C8 /* fetchData.swift in Sources */,
+				A96C6D7521FC94BF003E5D93 /* ViewController.swift in Sources */,
 				A913D77721CFC9DB00EE902D /* AppDelegate.swift in Sources */,
 				A913D79121D0391A00EE902D /* klant.swift in Sources */,
 				A9AA1A0621D15825004C33B6 /* onderhoudViewController.swift in Sources */,
@@ -352,6 +359,7 @@
 				A91B4C3621D7CEDA00CE99C8 /* updateData.swift in Sources */,
 				A913D78921CFEDCA00EE902D /* DesignableView.swift in Sources */,
 				A913D79321D1272900EE902D /* DetailViewController.swift in Sources */,
+				A9CF2F2F21FB4D83008803C4 /* ToestelVC.swift in Sources */,
 				A9CF2F2121F78B52008803C4 /* onderhoudCell.swift in Sources */,
 				A9CF2F1D21F752AC008803C4 /* NAViewController.swift in Sources */,
 			);

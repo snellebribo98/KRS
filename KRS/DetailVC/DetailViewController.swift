@@ -10,22 +10,24 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
+    // needed variables
     var nieuw: Int?
     var data: Klant3?
     var editer: Int?
-    
-    @IBOutlet weak var links: UIBarButtonItem!
-    @IBOutlet weak var titel: UINavigationItem!
-    @IBOutlet weak var rechts: UIBarButtonItem!
-    
-    @IBOutlet weak var klantGegevensView: DesignableView!
     
     var klantamount: Int?
     var toestelamount: Int?
     var onderhoudamount: Int?
     
+    // outlets
+    @IBOutlet weak var links: UIBarButtonItem!
+    @IBOutlet weak var titel: UINavigationItem!
+    @IBOutlet weak var rechts: UIBarButtonItem!
+    @IBOutlet weak var klantGegevensView: DesignableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        // edit the text on the buttons
         if nieuw != 1 && editer != 1 {
             links.title = "Edit"
             rechts.title = "Done"
@@ -39,14 +41,11 @@ class DetailViewController: UIViewController {
             rechts.title = "Save"
             titel.title = "Nieuwe Klant"
         }
-        
-        // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "klantSegue" {
             let KVC = segue.destination as! klantViewController
-            print("HIER")
             KVC.data = data
             KVC.nieuw = nieuw
             KVC.klantamount = klantamount
@@ -54,7 +53,7 @@ class DetailViewController: UIViewController {
             KVC.onderhoudamount = onderhoudamount
         }
         if segue.identifier == "toestelSegue" {
-            let TVC = segue.destination as! toestelViewController
+            let TVC = segue.destination as! ToestelVC
             TVC.data = data
             TVC.nieuw = nieuw
             TVC.klantamount = klantamount
@@ -79,6 +78,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    // send the needed notification
     @IBAction func linksButton(_ sender: Any) {
         if links.title == "Edit" {
             editer = 1
@@ -96,6 +96,7 @@ class DetailViewController: UIViewController {
         
     }
     
+    // send the needed notification
     @IBAction func rechtsButton(_ sender: Any) {
         if rechts.title == "Save" {
             if nieuw != 1 {
@@ -111,9 +112,4 @@ class DetailViewController: UIViewController {
             performSegue(withIdentifier: "unwindSegue", sender: self)
         }
     }
-    
-    
-    
-        
-
 }

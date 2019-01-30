@@ -10,12 +10,14 @@ import UIKit
 
 class klantViewController: UIViewController {
     
+    // needed variables
     var nieuw: Int?
     var data: Klant3?
     var klantamount: Int?
     var toestelamount: Int?
     var onderhoudamount: Int?
 
+    // outlets
     @IBOutlet weak var naam: UITextField!
     @IBOutlet weak var debnr: UITextField!
     @IBOutlet weak var tel: UITextField!
@@ -28,12 +30,15 @@ class klantViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if nieuw == 1 {
             newKlant()
         } else if data != nil {
-            print("HIER")
             existingKlant()
         }
+        
+        // add observers that watch if the edit function is turned on or off
+        // or if save is pushed
         let edited = Notification.Name("edit")
         let edited2 = Notification.Name("edit2")
         let edited3 = Notification.Name("edit3")
@@ -48,6 +53,7 @@ class klantViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    // enable the functions
     @objc func editOn() {
         naam?.isEnabled = true
         debnr?.isEnabled = true
@@ -60,6 +66,7 @@ class klantViewController: UIViewController {
         woonplaats?.isEnabled = true
     }
     
+    // disable the functions
     @objc func editOff() {
         naam?.isEnabled = false
         debnr?.isEnabled = false
@@ -72,6 +79,7 @@ class klantViewController: UIViewController {
         woonplaats?.isEnabled = false
     }
     
+    // disable the functions
     @objc func save() {
         naam?.isEnabled = false
         debnr?.isEnabled = false
@@ -82,9 +90,9 @@ class klantViewController: UIViewController {
         nr?.isEnabled = false
         postcode?.isEnabled = false
         woonplaats?.isEnabled = false
-        
     }
     
+    // update the online database by updating existing data or adding new data
     @objc func update(notification: Notification) {
         let note = notification.userInfo
         let notitie = note?["test"] as! String?
@@ -93,8 +101,16 @@ class klantViewController: UIViewController {
             let klant_id = data?.klant_id
             update.updateKlantgegevens(naam: naam?.text ?? "", debnr: debnr?.text ?? "", tel: tel?.text ?? "", mobiel: mobiel?.text ?? "", mail: mail?.text ?? "", straat: straat?.text ?? "", nr: nr?.text ?? "", postcode: postcode?.text ?? "", woonplaats: woonplaats?.text ?? "", notities: notitie ?? "", klant_id: klant_id ?? "")
         }
+        else
+        {
+            let create = createData()
+            let klant_id = data?.klant_id
+            create.createKlantgegevens(naam: naam?.text ?? "", debnr: debnr?.text ?? "", tel: tel?.text ?? "", mobiel: mobiel?.text ?? "", mail: mail?.text ?? "", straat: straat?.text ?? "", nr: nr?.text ?? "", postcode: postcode?.text ?? "", woonplaats: woonplaats?.text ?? "", notities: notitie ?? "", klant_id: klant_id ?? "")
+            
+        }
     }
     
+    // make everything empty and enable everything
     func newKlant() {
         naam?.text = ""
         debnr?.text = ""
@@ -107,6 +123,7 @@ class klantViewController: UIViewController {
         woonplaats?.text = ""
     }
     
+    // fill everything with the available data and disable everything
     func existingKlant() {
         naam?.text = data?.naam
         debnr?.text = data?.debnr
@@ -127,7 +144,6 @@ class klantViewController: UIViewController {
         nr?.isEnabled = false
         postcode?.isEnabled = false
         woonplaats?.isEnabled = false
-        
     }
     
     

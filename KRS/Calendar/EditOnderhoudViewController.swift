@@ -21,6 +21,8 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     @IBOutlet weak var editandcancel: UIBarButtonItem!
     @IBOutlet weak var doneandsave: UIBarButtonItem!
+    @IBOutlet weak var bar: UINavigationBar!
+    @IBOutlet weak var bartitle: UINavigationItem!
     
     var backup_onderhoud: onderhoud2?
     var onderhoud: onderhoud2?
@@ -29,12 +31,10 @@ class EditOnderhoudViewController: UIViewController, UIPickerViewDelegate, UIPic
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bartitle.title = "Nieuwe Afspraak"
         onderhoud = backup_onderhoud
         editandcancel.title = "Edit"
-        print(editandcancel.title)
-        print(doneandsave.title)
         doneandsave.title = "Done"
-        print(doneandsave.title)
         
         datumPicker.isHidden = true
         monteurPicker.isHidden = true

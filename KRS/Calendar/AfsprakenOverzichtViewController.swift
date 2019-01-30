@@ -38,7 +38,6 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
         
         overzichtTableView.delegate = self
         overzichtTableView.dataSource = self
-        // Do any additional setup after loading the view.
     }
     
     func fetchOnderhoud()
@@ -47,7 +46,6 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
         all_onderhoud = fetch.onderhoudData()
         all_klanten = fetch.klantData()
         all_toestellen = fetch.toestelData()
-        print(all_onderhoud!.count)
         for onderhoud in all_onderhoud!
         {
             let formatter = DateFormatter()
@@ -143,6 +141,18 @@ class AfsprakenOverzichtViewController: UIViewController, UITableViewDelegate, U
         {
             let DVC = segue.destination as! DetailViewController
             DVC.nieuw = 1
+            let fetch = fetchDatas()
+            let testklantgegevens = fetch.klantData()
+            let testonderhoudgegevens = fetch.onderhoudData()
+            let testtoestelgegevens = fetch.toestelData()
+            let klantamount = testklantgegevens?.count
+            let onderhoudamount = testonderhoudgegevens?.count
+            let toestelamount = testtoestelgegevens?.count
+            let nieuwedata = Klant3(naam: "", debnr: "", tel: "", mobiel: "", mail: "", straat: "", nr: "", postcode: "", woonplaats: "", notities: "", klant_id: String(klantamount!), toestellen: [toestel3](), onderhouden: [onderhoud3]())
+            DVC.klantamount = klantamount
+            DVC.toestelamount = toestelamount
+            DVC.onderhoudamount = onderhoudamount
+            DVC.data = nieuwedata
         }
     }
     
