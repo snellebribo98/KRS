@@ -6,8 +6,8 @@ Daarnaast heeft de gebruiker ook de mogelijkheid tot zoeken in de lijst via vers
 ![Zoeken](Pictures/zoeken.png)
 
 Ook kan de gebruiker een kalender bekijken en dagen selecteren om te zien welk onderhoud er die dag allemaal gedaan is.
-![Calender overzicht](Pictures/kalender_groot.png)
-![Calender dag](Pictures/kalender_klein.png)
+![Calender overzicht](Pictures/calender_groot.png)
+![Calender dag](Pictures/calender_dag.png)
 
 ### Informatie
 Naam: Wessel Mel
